@@ -16,18 +16,6 @@ use cases - how users interact with the system to get the information they want
 For tool projects, the users are typically programmers, and so the functional specification describes the programming interface.
 
 
-Project Structure
-Projects should have a online github repository with the project name. Top level folders/files within the repository include:
-
-README.md file that gives an overview of the project
-LICENSE file
-setup.py file that initializes the project after it has been cloned
-doc folder that contains documentation (including the functional specification, the design specification, and the final project presentation or poster)
-python package folder (with the same name as the repository) that is structured as one or more python modules (e.g., with init.py files) and test files that begin with “test_”.
-examples folder that contains examples of using the packages
-
-
-
 
 Design Documents
 You will create two documents describing the design of your project. These documents should be in your project docs folder.
