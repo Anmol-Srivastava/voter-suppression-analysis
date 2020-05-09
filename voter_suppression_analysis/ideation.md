@@ -1,0 +1,36 @@
+# Streams of Data
+
+[*Election Results*](https://electionlab.mit.edu/data)
+[*Demographics*](https://www.census.gov/data/tables/time-series/demo/voting-and-registration/congressional-voting-tables.html)
+[*Turnout*](https://www.census.gov/data/tables/time-series/demo/voting-and-registration/p20-583.html)
+
+# General Approach(es)
+
+1. We can treat this as a data science problem:
+    * analysis only
+        - significant differences between populations (meaning geographical areas)
+    * modelling
+        - clustering 
+        - if using 2018 results (mosst recent), topredict on?
+
+2. We can treat this exclusively as a visualization task: 
+    * map all variables of interest geographically
+        - political victories
+        - population attributes
+        - turnout and registration
+
+3. Other suggestions? 
+
+# Other Tidbits
+
+- the biggest part of "suppression" are the missing "suppressing" variables, which may include
+    * region-by-region registration laws (punitive ID laws, costs, etc.)
+    * poll location/volunteer scarcity 
+- desired granularity is at the congressional district level, but may be compromised to the state level
+- further selection/organizing in the data is required
+
+
+
+
+
+
