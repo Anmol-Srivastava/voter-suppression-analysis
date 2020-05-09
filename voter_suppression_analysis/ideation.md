@@ -12,7 +12,7 @@
     * analysis only
         - significant differences between populations (meaning geographical areas)
     * modelling
-        - clustering 
+        - clustering based on joined data: results + turnout + demographics 
         - if using 2018 results (most recent), what to predict on?
 
 2. We treat this exclusively as a visualization task: 
@@ -29,8 +29,10 @@
     * region-by-region registration laws (punitive ID laws, costs, etc.)
     * poll location/volunteer scarcity 
     * holiday/time-off status of voting days 
+    * US territories that don't have voting rights lmao?
 - desired granularity is at the congressional district level, but may be compromised to the state level
 - further selection/organizing in the data is required
+
 
 
 
