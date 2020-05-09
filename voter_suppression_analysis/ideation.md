@@ -8,7 +8,7 @@
 
 ## General Approach(es)
 
-1. We treat this as a data science problem:
+1. We treat this as a data science problem (still concluding in a map visualization):
     * analysis only
         - significant differences between populations (meaning geographical areas)
     * modelling
@@ -28,6 +28,7 @@
 - the biggest part of "suppression" are the missing "suppressing" variables, which may include
     * region-by-region registration laws (punitive ID laws, costs, etc.)
     * poll location/volunteer scarcity 
+    * holiday/time-off status of voting days 
 - desired granularity is at the congressional district level, but may be compromised to the state level
 - further selection/organizing in the data is required
 
