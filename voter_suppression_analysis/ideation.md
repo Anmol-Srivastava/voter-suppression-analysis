@@ -2,7 +2,7 @@
 
 [*Election Results*](https://electionlab.mit.edu/data)
 
-[*Demographics*](https://www.census.gov/data/tables/time-series/demo/voting-and-registration/congressional-voting-tables.html)
+[*Demographics (No Longer Needed)*](https://www.census.gov/data/tables/time-series/demo/voting-and-registration/congressional-voting-tables.html)
 
 [*Turnout*](https://www.census.gov/data/tables/time-series/demo/voting-and-registration/p20-583.html)
 
@@ -12,7 +12,7 @@
     * analysis only
         - significant differences between populations (meaning geographical areas)
     * modelling
-        - clustering based on joined data: results + turnout + demographics 
+        - clustering based on joined data: results + turnout (where turnout: demographics + methods + reasons + turnout)
         - if using 2018 results (most recent), what to predict on?
 
 2. We treat this exclusively as a visualization task: 
