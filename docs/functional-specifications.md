@@ -25,10 +25,15 @@ In any case, users should be able to navigate map applications resembling those 
         - votes 
 - [Voting and Registration in the Election of November 2018](https://www.census.gov/data/tables/time-series/demo/voting-and-registration/p20-583.html)
     - Provider: U.S. Census Bureau
-    - Structure: Distinct .CSV files 
-        - 1
-        - 2
-        - 3
+    - Structure: Distinct .CSV files, each quantifying the rate of voter turnout among some central target demographic. Interesting demographics (each with their own file) include:
+        - race
+        - age
+        - sex
+        - income
+        - employment status
+    - Notes:
+        - each .CSV files has two primary variable types: percent (population) registered to vote, and percent voted
+        - additional .CSV files recording methods of voting and reasons for not voting are also used in our analysis 
 - [Shapefiles for US Congressional Districts LINK MISSING](https://www.google.com)
     - Provider: Missing
     - Structure: Missing 
