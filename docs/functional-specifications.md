@@ -29,11 +29,10 @@ In any case, users should be able to navigate map applications resembling those 
         - race
         - age
         - sex
-        - income
-        - employment status
+        - income/worker status
     - Notes:
-        - each .CSV files has two primary variable types: percent (population) registered to vote, and percent voted
-        - additional .CSV files recording methods of voting and reasons for not voting are also used in our analysis 
+        - each file has two primary variable types: percent registered to vote, and percent voted
+        - additional files recording voting method, and reasons for not voting, were also used
 - [Shapefiles for US Congressional Districts LINK MISSING](https://www.google.com)
     - Provider: Missing
     - Structure: Missing 
