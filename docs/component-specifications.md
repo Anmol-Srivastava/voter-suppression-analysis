@@ -49,5 +49,18 @@
     - HTML rendering of bokeh map 
 
 ## Interactions
+1. User changes 'year' value using visualization controls on browser.
+    - Browser sends changed settings of interactive map to Map Manager
+    - Map Manager retrieves modeled dataset from Modeling
+    - Map Manager filters data to the desired year
+    - Map Manager returns bokeh visualization for the changed settings
+    - Browser updates visualization with new bokeh view
+    
+2. User selects a specific state using visualization controls on browser.
+    - Browser sends changed settings of interactive map to Map Manager
+    - Map Manager retrieves modeled dataset from Modeling
+    - Map Manager filters data to desired state/cluster and year 
+    - Map Manager returns bvisualization with state/cluster highlighted and accompanying anecdotes
+    - Browser updates visualization with new bokeh view
 
 ## Preliminary Plan 
