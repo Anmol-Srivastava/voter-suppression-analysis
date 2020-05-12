@@ -36,4 +36,20 @@ In any case, users should be able to navigate map applications resembling those 
 
 ## Use Cases
 
-Hee.
+1. A user wants to compare the change in state groupings on the map, from one year to the next. 
+    - User: Adjusts slider for 'year' variable
+        - Map: Updates to reflect color-coded grouping of states for that year, from backend analysis
+    - User: Moves slider for 'year' variable forward by one unit
+        - Map: Updates to reflect subsequent grouping of states 
+        
+2. A user wants to compare the difference in attributes among state groupings on the map, within one year.
+    - User: Hovers over and selects one state in a given year
+        - Map: highlights this state and all states belonging to its cluster
+        - Map: displays relative attributes for this state (compared to national aggregates) via pop-up
+        - Map: displays relative attributes for the cluster via pop-up
+        - Map: provides additional anecdotes (voting methods, ID laws, court cases) if available via pop-up
+    - User: Without changing the year, hovers over and selects a different state (presumable from a different group)
+        - Map: highlights this state and all states belonging to its cluster
+        - Map: displays relative attributes for this state (compared to national aggregates) via pop-up
+        - Map: displays relative attributes for the cluster via pop-up
+        - Map: provides additional anecdotes (voting methods, ID laws, court cases) if available via pop-up 
