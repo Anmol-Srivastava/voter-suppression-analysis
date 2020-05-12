@@ -64,3 +64,10 @@
     - Browser updates visualization with new bokeh view
 
 ## Preliminary Plan 
+1. Create and organize desired package structure in repository
+2. Incorporate Git CI and test functionality
+3. Write scripts to appropriately process and combine data
+4. Write scripts to model and categorize data entries
+5. Develop template for bokeh map visualization (with interactive features)
+6. Write scripts to simplify installation and launch of visualization
+7. Revisit model performance and add write-ups, time permitting
