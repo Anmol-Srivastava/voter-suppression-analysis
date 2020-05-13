@@ -1,5 +1,0 @@
-- Note that the methods sets are covered by this description. 
-- Link to Census Data: 
-    - (https://www.census.gov/data/tables/time-series/demo/voting-and-registration/p20-583.html)
-- Can use demographic data here, instead of additional incorporation of Census survey results.
-- Format of .xlsx files needs severe correction 

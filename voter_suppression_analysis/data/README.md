@@ -1,3 +1,20 @@
+This is a combined, messy version of the eventual readme that should result.
+
+
+
+turnout data below 
+
+- Note that the methods sets are covered by this description. 
+- Link to Census Data: 
+    - (https://www.census.gov/data/tables/time-series/demo/voting-and-registration/p20-583.html)
+- Can use demographic data here, instead of additional incorporation of Census survey results.
+- Format of .xlsx files needs severe correction 
+
+
+
+election data below 
+
+
 ### Anmol's Notes:
     - The "senate" and "district" sets have constituency-level Senate & House returns, respectively.
     - The "state" and "county" sets have constituency-level state office and county office returns, respectively. 
