@@ -6,7 +6,7 @@
     - file formats need severe correction
     
 ### Link:
-    - [All Years](https://www.census.gov/topics/public-sector/voting/data/tables.2018.html)
+    - ![All Years](https://www.census.gov/topics/public-sector/voting/data/tables.2018.html)
 turnout data below 
 
 ## Election Data (MEL)
