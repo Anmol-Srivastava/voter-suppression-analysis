@@ -1,0 +1,7 @@
+name: ntf
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - numpy
+  - pandas 
