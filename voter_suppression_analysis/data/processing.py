@@ -9,6 +9,7 @@ import pandas as pd
 # useful constants for accessing files 
 AGE_PATH_REGEX = 'clean/*_age.csv'
 SEX_PATH_REGEX = 'clean/*_sexrace.csv'
+LAWS_DATA_PATH = 'clean/suppression.csv'
 
 
 # useful constants for renaming and removing columns 
@@ -45,6 +46,7 @@ def get_age_df(file_path):
     # access, label, and sanitize data 
     df = pd.read_csv(file_path, header=0, names=AGE_COLUMN_NAMES)
     df = df[KEEP_AGE_COLUMNS]
+    df.state = df.state.str.lower()
     df.percent_reg = df.percent_reg.apply(pd.to_numeric, errors='coerce')
     return df 
 
@@ -67,6 +69,7 @@ def get_sexrace_df(file_path):
     # access, label, and sanitize data 
     df = pd.read_csv(file_path, header=0, names=SEX_COLUMN_NAMES)
     df = df[KEEP_SEX_COLUMNS]
+    df.state = df.state.str.lower()
     df.percent_reg = df.percent_reg.apply(pd.to_numeric, errors='coerce')
     return df 
 
@@ -74,7 +77,7 @@ def get_sexrace_df(file_path):
 def combine_age_data():
     '''
     Retrieve all age-related data files, combine into one pd.DataFrame
-    object. 
+    object, and attach legislative data columns. 
 
     Args:   None
 
@@ -92,15 +95,22 @@ def combine_age_data():
         df = get_age_df(age_file)
         df_list.append(df)
 
-    # concatenate all data 
+    # concatenate and attach legislative data
     combined = pd.concat(df_list, axis=0, ignore_index=True)
-    return combined 
+    laws_df = pd.read_csv(LAWS_DATA_PATH)
+    laws_df.state = laws_df.state.str.lower()
+    
+    result_df = combined.merge(laws_df, 
+                               how='outer', 
+                               left_on='state', 
+                               right_on='state')
+    return result_df  
 
 
 def combine_sexrace_data():
     '''
     Retrieve all sexrace-related data files, combine into one 
-    pd.DataFrame object. 
+    pd.DataFrame object, and attach legislative data columns. 
 
     Args:   None
 
@@ -118,9 +128,16 @@ def combine_sexrace_data():
         df = get_sexrace_df(sex_file)
         df_list.append(df)
 
-    # concatenate all data 
+    # concatenate and attach legislative data
     combined = pd.concat(df_list, axis=0, ignore_index=True)
-    return combined 
+    laws_df = pd.read_csv(LAWS_DATA_PATH)
+    laws_df.state = laws_df.state.str.lower()
+
+    result_df = combined.merge(laws_df, 
+                               how='outer', 
+                               left_on='state', 
+                               right_on='state')
+    return result_df  
 
 
 
