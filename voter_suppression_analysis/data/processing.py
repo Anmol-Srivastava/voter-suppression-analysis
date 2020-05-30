@@ -29,15 +29,15 @@ SEX_COLUMN_NAMES = [
 ]
 
 KEEP_AGE_COLUMNS = [
-    'state', 'age_bracket', 'total', 'total_reg', 'total_voted',
+    'state', 'age_bracket', 'total', 'total_reg', 'total_voted', 
     'percent_reg', 'percent_voted', 'yr'
 ]
 
-KEEP_SEX_COLUMNS = ['state', 'group', 'percent_reg', 'percent_voted', 'yr']
+KEEP_SEX_COLUMNS = ['state', 'group', 'total_cit', 'total_reg', 'total_voted', 'yr']
 
-# useful constants for standardizing state labels
-STATE_NAMES = ['ALABAMA', 'ALASKA', 'ARIZONA', 'ARKANSAS', 'CALIFORNIA',
-    'COLORADO', 'CONNECTICUT', 'DELAWARE', 'DISTRICT OF COLUMBIA', 'FLORIDA',
+# useful constants for standardizing state labels 
+STATE_NAMES = ['ALABAMA', 'ALASKA', 'ARIZONA', 'ARKANSAS', 'CALIFORNIA', 
+    'COLORADO', 'CONNECTICUT', 'DELAWARE', 'DISTRICT OF COLUMBIA', 'FLORIDA', 
     'GEORGIA', 'HAWAII', 'IDAHO', 'ILLINOIS', 'INDIANA', 'IOWA', 'KANSAS', 
     'KENTUCKY', 'LOUISIANA', 'MAINE', 'MARYLAND', 'MASSACHUSETTS', 
     'MICHIGAN', 'MINNESOTA', 'MISSISSIPPI', 'MISSOURI', 'MONTANA', 'NEBRASKA', 
@@ -48,8 +48,8 @@ STATE_NAMES = ['ALABAMA', 'ALASKA', 'ARIZONA', 'ARKANSAS', 'CALIFORNIA',
     'WEST VIRGINIA', 'WISCONSIN', 'WYOMING'
 ]
 
-# note these integers are related to US Census Bureau ordering
-STATE_NUMS = [1,  2,  4,  5,  6,  8,  9, 10, 11, 12, 13, 15, 16, 17, 18, 19,
+# note these integers are related to US Census Bureau ordering 
+STATE_NUMS = [1,  2,  4,  5,  6,  8,  9, 10, 11, 12, 13, 15, 16, 17, 18, 19, 
     20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37,
     38, 39, 40, 41, 42, 44, 45, 46, 47, 48, 49, 50, 51, 53, 54, 55, 56,
 ]
@@ -84,7 +84,7 @@ def get_age_df(file_path):
     df.yr = df.yr.astype(str)
     df.total = df.total.apply(pd.to_numeric, errors='coerce')
     df.total_reg = df.total_reg.apply(pd.to_numeric, errors='coerce')
-    df.total_reg = df.total_reg.apply(pd.to_numeric, errors='coerce')
+    df.total_voted = df.total_voted.apply(pd.to_numeric, errors='coerce')
     df.age_bracket = df.age_bracket.map(lambda x: x.lstrip('.'))
     return df
 
@@ -109,9 +109,11 @@ def get_sexrace_df(file_path):
     df = df[KEEP_SEX_COLUMNS]
     df.state = df.state.str.upper()
     df.yr = df.yr.astype(str)
-    df.percent_reg = df.percent_reg.apply(pd.to_numeric, errors='coerce')
+    df.total_cit = df.total_cit.apply(pd.to_numeric, errors='coerce')
+    df.total_reg = df.total_reg.apply(pd.to_numeric, errors='coerce')
+    df.total_voted = df.total_voted.apply(pd.to_numeric, errors='coerce')
+    df.group = df.group.map(lambda x: x.lstrip('.'))
     return df
-
 
 def combine_age_data():
     '''
