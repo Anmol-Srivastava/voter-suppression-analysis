@@ -10,9 +10,9 @@ The ultimate aim of this project is to provide users with an interactive visuali
 
 ## User Profiles
 
-Anticipated users are any lay-people interested in learning about the factors inhibiting voter turnout, or the variation in voting experiences across the U.S (and over time). Users may also be state-level legislators in charge of the redistricting process. These policy-makers need a good understanding of the citizen populations in each constituency to carry out this role. To that end, the data represented in our visualization may also be useful. 
+Anticipated users include anyone interested in learning about the factors inhibiting voter turnout, or the variation in voting experiences across the U.S (and over time). Users may also be state-level legislators in charge of the redistricting process. These policy-makers need a good understanding of the citizen populations in each constituency to carry out this role. To that end, the data represented in our visualization may also be useful. 
 
-In any case, users should be able to navigate map applications resembling those found on popular websites (e.g., Google Maps) via hover, point-and-click, pan, and scrolling operations. Given appropriate direction, they must be able to clone a Git repository and run Python scripts to access and launch our visualization. 
+In any case, users must be able to clone a GitHub repository and follow a minimal set of installation instructions in a Linux environment. Users should also be able to navigate map applications resembling those found on popular websites (e.g., Google Maps) via hover, point-and-click, pan, and scrolling operations. Given appropriate direction, they must be able to clone a Git repository and run Python scripts to access and launch our visualization. 
 
 ## Data Sources
 
