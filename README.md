@@ -17,7 +17,7 @@ Our hope is that this dashboard draws attention to suppressed communities, while
 
 *Please note:* 
   - the following steps are intended for a Linux environment
-  - counterparts for other environments were not part of the initial development scope, and are hence currently unavailable
+  - counterparts for other environments were not part of the initial scope, and are currently unavailable
   - SOMETHING ABOUT WHICH STEPS ARE ONE TIME,ETC ETC
 
 #### Clone and access the repository in a location of your choice:
