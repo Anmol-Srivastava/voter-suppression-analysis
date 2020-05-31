@@ -1,18 +1,32 @@
+""" Initialize cloned repository """
+import sys
+import os
 from setuptools import setup, find_packages
 
-PACKAGES = find_packages()
-DESCRIPTION = "Desc."
-URL = "https://google.com"
 
+PACKAGES = find_packages()
+
+NAME = 'VSA'
+MAINTAINER = 'Anmol Srivastava'
+DESCRIPTION = 'Voter suppression visualization tool.'
+URL = 'https://github.com/Anmol-Srivastava/voter-suppression-analysis'
+LICENSE = 'MIT License'
+VERSION = '1.0'
+
+# REQUIREMENTS.TXT OR REQUIRES=
+
+# package all args 
 OPTS = dict(
-  name="vsa",
-  description=DESCRIPTION,
-  url=URL,
-  license="MIT",
-  author="me",
-  version="1.0",
-  packages=PACKAGES
-)
+            name=NAME,
+            maintainer=MAINTAINER,
+            description=DESCRIPTION,
+            url=URL,
+            license=LICENSE,
+            version=VERSION,
+            package=PACKAGES
+        )
+
 
 if __name__ == '__main__':
+  # set up package 
   setup(**OPTS)
