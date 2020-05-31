@@ -47,7 +47,7 @@ im in danger
 
 ## Team
 
-The following team of graduate students in the UW Master's in Data Science (MSDS) program:
+This project was developed by the following team of graduate students in the UW Master's in Data Science (MSDS) program:
 
 - [Andres De La Fuente](https://github.com/Oponn-1)
 - [Anmol Srivastava](https://github.com/Anmol-Srivastava)
