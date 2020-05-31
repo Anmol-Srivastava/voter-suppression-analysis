@@ -9,7 +9,9 @@
 
 *This project is part of an assignment for [DATA 515: Software Engineering for Data Scientists](http://uwseds.github.io).*
 
-The aim of this project is to visualize the state of voter suppression across the US. Chiefly, this project draws on data from the US Census Bureau and the American Civil Liberties Union (ACLU), to create a geographical depiction of voter turnout among various demographics. The central dashboard describes, over several years, each state's turnout by race, sex, and age. This information is accompanied by a visual demarcation of the punitive quality of each state's voting laws. For data-related or other practical reasons, many considerations are left out (*e.g.,* missing income data, or the absent voting rights of US territories). Our hope is that this dashboard draws attention to suppressed communities, while encouraging viewers to think critically about any and all factors that inhibit turnout: from voting location sparsity, to misleading, media-disseminated poll results. 
+The aim of this project is to visualize the state of voter suppression across the US. Chiefly, this project draws on data from the US Census Bureau and the American Civil Liberties Union (ACLU), to create an interactive geographical depiction of voter turnout among various demographics. The central dashboard describes, over several years, each state's turnout by race, sex, and age. This information is accompanied by a visual demarcation of the punitive quality of each state's voting laws. For data-related or other practical reasons, many considerations are left out (*e.g.,* missing income data, or the absent voting rights of US territories). 
+
+Our hope is that this dashboard draws attention to suppressed communities, while encouraging viewers to think critically about any and all factors that inhibit turnout: from voting location sparsity, to misleading, media-disseminated poll results. 
 
 ## Installation
 
