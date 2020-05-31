@@ -15,12 +15,28 @@ Our hope is that this dashboard draws attention to suppressed communities, while
 
 ## Installation
 
-TODO
+*Please note:* the following steps are intended for a Linux environment. Counterparts for other environments were not part of the initial development scope, and are hence currently unavailable. 
+
+### Clone and access the repository in a location of your choice:
+```
+git clone https://github.com/Anmol-Srivastava/voter-suppression-analysis.git
+cd voter-suppression-analysis
+```
+
+### Set up and activate the necessary environment: 
+```
+help
+```
+
+### Launch the dashboard:
+```
+im in danger
+```
 
 ## Structure
 
 - `docs`: early-stage functional and component specifications, technology reviews, presentations, and `pylint` test outputs
-- `examples`: Jupyter notebook guides on launching and exploring the visualization
+- `examples`: Jupyter notebook guides for launching and exploring the visualization
 - `voter_suppression_analysis`: main module 
   - `data`: raw and sanitized data, with an addtional `README`, and data-processing python script
   - `figures`: mid-development figures and visualization-defining python script 
