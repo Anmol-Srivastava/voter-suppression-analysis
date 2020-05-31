@@ -17,18 +17,18 @@ Our hope is that this dashboard draws attention to suppressed communities, while
 
 *Please note:* the following steps are intended for a Linux environment. Counterparts for other environments were not part of the initial development scope, and are hence currently unavailable. 
 
-### Clone and access the repository in a location of your choice:
+#### Clone and access the repository in a location of your choice:
 ```
 git clone https://github.com/Anmol-Srivastava/voter-suppression-analysis.git
 cd voter-suppression-analysis
 ```
 
-### Set up and activate the necessary environment: 
+#### Set up and activate the necessary environment: 
 ```
 help
 ```
 
-### Launch the dashboard:
+#### Launch the dashboard:
 ```
 im in danger
 ```
