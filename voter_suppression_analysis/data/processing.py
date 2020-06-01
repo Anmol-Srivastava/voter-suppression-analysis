@@ -80,12 +80,14 @@ def get_age_df(file_path):
     # access, label, and sanitize data
     df = pd.read_csv(file_path, header=0, names=AGE_COLUMN_NAMES)
     df = df[KEEP_AGE_COLUMNS]
+
     df.state = df.state.str.upper()
     df.yr = df.yr.astype(str)
     df.total = df.total.apply(pd.to_numeric, errors='coerce')
     df.total_reg = df.total_reg.apply(pd.to_numeric, errors='coerce')
     df.total_voted = df.total_voted.apply(pd.to_numeric, errors='coerce')
     df.age_bracket = df.age_bracket.map(lambda x: x.lstrip('.'))
+    
     return df
 
 
