@@ -1,11 +1,3 @@
-'''
-Code to load, clean, and combine all relevant data.
-See README for references re: data.
-'''
-import glob
-import pandas as pd
-
-
 #############
 # CONSTANTS #
 #############
@@ -80,14 +72,12 @@ def get_age_df(file_path):
     # access, label, and sanitize data
     df = pd.read_csv(file_path, header=0, names=AGE_COLUMN_NAMES)
     df = df[KEEP_AGE_COLUMNS]
-
     df.state = df.state.str.upper()
     df.yr = df.yr.astype(str)
-    df.total = df.total.apply(pd.to_numeric, errors='coerce')
-    df.total_reg = df.total_reg.apply(pd.to_numeric, errors='coerce')
-    df.total_voted = df.total_voted.apply(pd.to_numeric, errors='coerce')
+    df.total = df.total.replace(',','', regex=True).apply(pd.to_numeric, errors='coerce')
+    df.total_reg = df.total_reg.replace(',','', regex=True).apply(pd.to_numeric, errors='coerce')
+    df.total_voted = df.total_voted.replace(',','', regex=True).apply(pd.to_numeric, errors='coerce')
     df.age_bracket = df.age_bracket.map(lambda x: x.lstrip('.'))
-    
     return df
 
 
@@ -111,11 +101,12 @@ def get_sexrace_df(file_path):
     df = df[KEEP_SEX_COLUMNS]
     df.state = df.state.str.upper()
     df.yr = df.yr.astype(str)
-    df.total_cit = df.total_cit.apply(pd.to_numeric, errors='coerce')
-    df.total_reg = df.total_reg.apply(pd.to_numeric, errors='coerce')
-    df.total_voted = df.total_voted.apply(pd.to_numeric, errors='coerce')
+    df.total_cit = df.total_cit.replace(',','', regex=True).apply(pd.to_numeric, errors='coerce')
+    df.total_reg = df.total_reg.replace(',','', regex=True).apply(pd.to_numeric, errors='coerce')
+    df.total_voted = df.total_voted.replace(',','', regex=True).apply(pd.to_numeric, errors='coerce')
     df.group = df.group.map(lambda x: x.lstrip('.'))
     return df
+
 
 def combine_age_data():
     '''
