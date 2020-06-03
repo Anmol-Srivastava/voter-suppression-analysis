@@ -250,8 +250,8 @@ def test_homogenize_sexrace_data():
     ''' Test standardization of all sexrace data. '''
     pass 
 
-#test_get_age_df()
-#test_get_sexrace_df()
-#test_combine_age_data()
-#test_combine_sexrace_data()
+test_get_age_df()
+test_get_sexrace_df()
+test_combine_age_data()
+test_combine_sexrace_data()
 test_homogenize_age_data()
