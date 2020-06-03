@@ -28,18 +28,18 @@ SEX_COLUMN_NAMES = [
 ]
 
 KEEP_AGE_COLUMNS = [
-    'state', 'age_bracket', 'total', 'total_reg', 'total_voted', 
+    'state', 'age_bracket', 'total', 'total_reg', 'total_voted',
     'percent_reg', 'percent_voted', 'yr'
 ]
 
 KEEP_SEX_COLUMNS = ['state', 'group', 'total_cit', 'total_reg', 'total_voted', 'yr']
 
-# useful constants for standardizing state labels 
-STATE_NAMES = ['ALABAMA', 'ALASKA', 'ARIZONA', 'ARKANSAS', 'CALIFORNIA', 
-    'COLORADO', 'CONNECTICUT', 'DELAWARE', 'DISTRICT OF COLUMBIA', 'FLORIDA', 
-    'GEORGIA', 'HAWAII', 'IDAHO', 'ILLINOIS', 'INDIANA', 'IOWA', 'KANSAS', 
-    'KENTUCKY', 'LOUISIANA', 'MAINE', 'MARYLAND', 'MASSACHUSETTS', 
-    'MICHIGAN', 'MINNESOTA', 'MISSISSIPPI', 'MISSOURI', 'MONTANA', 'NEBRASKA', 
+# useful constants for standardizing state labels
+STATE_NAMES = ['ALABAMA', 'ALASKA', 'ARIZONA', 'ARKANSAS', 'CALIFORNIA',
+    'COLORADO', 'CONNECTICUT', 'DELAWARE', 'DISTRICT OF COLUMBIA', 'FLORIDA',
+    'GEORGIA', 'HAWAII', 'IDAHO', 'ILLINOIS', 'INDIANA', 'IOWA', 'KANSAS',
+    'KENTUCKY', 'LOUISIANA', 'MAINE', 'MARYLAND', 'MASSACHUSETTS',
+    'MICHIGAN', 'MINNESOTA', 'MISSISSIPPI', 'MISSOURI', 'MONTANA', 'NEBRASKA',
     'NEVADA', 'NEW HAMPSHIRE', 'NEW JERSEY', 'NEW MEXICO', 'NEW YORK',
     'NORTH CAROLINA', 'NORTH DAKOTA', 'OHIO', 'OKLAHOMA', 'OREGON',
     'PENNSYLVANIA', 'RHODE ISLAND', 'SOUTH CAROLINA', 'SOUTH DAKOTA',
@@ -47,8 +47,8 @@ STATE_NAMES = ['ALABAMA', 'ALASKA', 'ARIZONA', 'ARKANSAS', 'CALIFORNIA',
     'WEST VIRGINIA', 'WISCONSIN', 'WYOMING'
 ]
 
-# note these integers are related to US Census Bureau ordering 
-STATE_NUMS = [1,  2,  4,  5,  6,  8,  9, 10, 11, 12, 13, 15, 16, 17, 18, 19, 
+# note these integers are related to US Census Bureau ordering
+STATE_NUMS = [1,  2,  4,  5,  6,  8,  9, 10, 11, 12, 13, 15, 16, 17, 18, 19,
     20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37,
     38, 39, 40, 41, 42, 44, 45, 46, 47, 48, 49, 50, 51, 53, 54, 55, 56,
 ]
@@ -81,9 +81,9 @@ def get_age_df(file_path):
     df = df[KEEP_AGE_COLUMNS]
     df.state = df.state.str.upper()
     df.yr = df.yr.astype(str)
-    df.total = df.total.apply(pd.to_numeric, errors='coerce')
-    df.total_reg = df.total_reg.apply(pd.to_numeric, errors='coerce')
-    df.total_voted = df.total_voted.apply(pd.to_numeric, errors='coerce')
+    df.total = df.total.replace(',','', regex=True).apply(pd.to_numeric, errors='coerce')
+    df.total_reg = df.total_reg.replace(',','', regex=True).apply(pd.to_numeric, errors='coerce')
+    df.total_voted = df.total_voted.replace(',','', regex=True).apply(pd.to_numeric, errors='coerce')
     df.age_bracket = df.age_bracket.map(lambda x: x.lstrip('.'))
     return df
 
@@ -108,9 +108,9 @@ def get_sexrace_df(file_path):
     df = df[KEEP_SEX_COLUMNS]
     df.state = df.state.str.upper()
     df.yr = df.yr.astype(str)
-    df.total_cit = df.total_cit.apply(pd.to_numeric, errors='coerce')
-    df.total_reg = df.total_reg.apply(pd.to_numeric, errors='coerce')
-    df.total_voted = df.total_voted.apply(pd.to_numeric, errors='coerce')
+    df.total_cit = df.total_cit.replace(',','', regex=True).apply(pd.to_numeric, errors='coerce')
+    df.total_reg = df.total_reg.replace(',','', regex=True).apply(pd.to_numeric, errors='coerce')
+    df.total_voted = df.total_voted.replace(',','', regex=True).apply(pd.to_numeric, errors='coerce')
     df.group = df.group.map(lambda x: x.lstrip('.'))
     return df
 
@@ -145,8 +145,8 @@ def combine_age_data():
                                how='outer',
                                left_on='state',
                                right_on='state')
-    
-    # make nationwide labels consistent and finish 
+
+    # make nationwide labels consistent and finish
     result_df.state.loc[result_df.state == 'US'] = 'NATIONAL'
     result_df.state.loc[result_df.state == 'UNITED STATES'] = 'NATIONAL'
     return result_df
@@ -182,8 +182,8 @@ def combine_sexrace_data():
                                how='outer',
                                left_on='state',
                                right_on='state')
-    
-    # make nationwide labels consistent and finish 
+
+    # make nationwide labels consistent and finish
     result_df.state.loc[result_df.state == 'US'] = 'NATIONAL'
     result_df.state.loc[result_df.state == 'UNITED STATES'] = 'NATIONAL'
     return result_df
@@ -250,6 +250,7 @@ def homogenize_age_data(df_in):
     # refomatting
     result.yr = result.yr.astype(int)
     result.state = result.state.str.capitalize()
+    result = result.rename(columns={'age_bracket':'group'})
 
     # attach our state labels/IDs and finish
     result = pd.merge(result, df_states, left_on='state', right_on='state')
@@ -269,7 +270,7 @@ def homogenize_sexrace_data(df_in):
     """
     df_states = pd.DataFrame(STATES_TABLE, columns=['state', 'id'])
     df_states.state = df_states.state.str.capitalize()
-    
+
     # useful constants for renaming relevant demographic groups
     ORIGINAL_GROUPS = ['Total', 'Male', 'Female', 'N-H White','N-H Black',
                        'API', 'Hispanic', 'Non-Hispanic White', 'Non-Hispanic Black',
@@ -279,7 +280,7 @@ def homogenize_sexrace_data(df_in):
                      'Asian & Pacific Islander','Hispanic', 'White',
                      'Black', 'Asian & Pacific Islander','White','Black',
                      'Asian & Pacific Islander','Hispanic']
-    
+
     # useful constants for the 'total's columns to work with
     TOTALS_COLUMNS = ['total_cit', 'total_reg', 'total_voted']
 
@@ -292,7 +293,7 @@ def homogenize_sexrace_data(df_in):
     df_groups_kept = df.loc[df.group.isin(RENAME_GROUPS)]
     df_groups_kept.yr = df_groups_kept.yr.astype(float).astype(int).astype(str)
 
-    # interatively validating the 'total's values 
+    # interatively validating the 'total's values
     for col in TOTALS_COLUMNS:
         df_temp = df_groups_kept.pivot_table(index=['state','yr'], columns='group', values=col)
         df_temp = df_temp.reset_index()
@@ -318,12 +319,13 @@ def homogenize_sexrace_data(df_in):
     df_merge_kept.state = df_merge_kept.state.str.capitalize()
     df_demo_out = df_merge_kept.rename(columns={"total_cit_x":'total'})
     df_demo_out = df_demo_out.sort_values(by=['yr', 'state']).round()
-    
+    df_demo_out.yr = df_demo_out.yr.astype(int)
+
     # calculating the percentage of voter turnout totals
     df_demo_out['percent_reg'] = df_demo_out.total_reg / df_demo_out.total
     df_demo_out['percent_voted'] = df_demo_out.total_voted / df_demo_out.total
-        
+
     # attach our state labels/IDs and finish
     df_demo_out = pd.merge(df_demo_out, df_states, left_on='state', right_on='state')
-    
+
     return df_demo_out
