@@ -87,9 +87,8 @@ def test_get_age_df():
     # check resulting df has correct columns
     assert all(df.columns == EXPECTED_AGE_COLUMNS)
 
-    # check punctuation marks have been removed
-    found_punctuation = df.Age.str.contains('.').any()
-    assert (found_punctuation == False)
+    # check leading punctuation marks have been removed
+    assert df["Age"][0] == "Total"
 
 
 def test_get_sexrace_df():
@@ -122,8 +121,7 @@ def test_get_sexrace_df():
     assert all(df.columns == EXPECTED_SEX_COLUMNS)
 
     # check punctuation has been removed
-    found_punctuation = df.Group.str.contains('.').any()
-    assert (found_punctuation == False)
+    assert df["Group"][0] == "Total"
 
 
 def test_combine_age_data():
