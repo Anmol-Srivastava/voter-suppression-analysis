@@ -111,7 +111,7 @@ def scatter_turnout(df_in, x_value, y_value, color_variable, title, x_title, y_t
 
 
     bars = alt.Chart().mark_bar().encode(
-        x='count()',
+        x=alt.X('count()', title='Number of States with Restrictive Laws'),
         y=alt.Y(color_variable, title='Restrictive Laws'),
         color=alt.condition(click, color, alt.value('lightgray'))
     ).transform_filter(
