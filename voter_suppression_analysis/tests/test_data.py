@@ -5,7 +5,7 @@ import random
 import pandas as pd 
 
 # test
-from voter_suppression_analysis import app
+import voter_suppression_analysis.app
 
 from voter_suppression_analysis.data.processing import \
     get_age_df, get_sexrace_df, \
