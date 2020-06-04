@@ -66,7 +66,7 @@ def test_get_age_df():
             - resulting df has data
             - punctuation has been removed
     '''
-
+    print(EXAMPLE_PATH_AGE)
     # smoke tet
     df = get_age_df(EXAMPLE_PATH_AGE)
 
