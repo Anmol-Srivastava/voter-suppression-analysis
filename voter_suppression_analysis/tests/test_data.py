@@ -31,6 +31,30 @@ EXPECTED_SEX_COLUMNS = [
     'CI Registered', 'Total Voted', 'Percent Voted (18+)', 'CI Voted', 'Year'
 ]
 
+# useful constants for expected shapes
+FINISHED_LENGTH_AGE = 55
+
+# useful constants for state labels and IDs
+STATE_NUMS = [
+    1,  2,  4,  5,  6,  8,  9, 10, 11, 12, 13, 15, 16, 17, 18, 19, 20, 21, 
+    22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39,
+    40, 41, 42, 44, 45, 46, 47, 48, 49, 50, 51, 53, 54, 55, 56, 0
+]
+
+STATE_NAMES = [
+    'ALABAMA', 'ALASKA', 'ARIZONA', 'ARKANSAS', 'CALIFORNIA', 'COLORADO', 
+    'CONNECTICUT', 'DELAWARE', 'DISTRICT OF COLUMBIA', 'FLORIDA', 'GEORGIA', 
+    'HAWAII', 'IDAHO', 'ILLINOIS', 'INDIANA', 'IOWA', 'KANSAS', 'KENTUCKY', 
+    'LOUISIANA', 'MAINE', 'MARYLAND', 'MASSACHUSETTS', 'MICHIGAN', 
+    'MINNESOTA', 'MISSISSIPPI', 'MISSOURI', 'MONTANA', 'NEBRASKA', 'NEVADA',
+    'NEW HAMPSHIRE', 'NEW JERSEY', 'NEW MEXICO', 'NEW YORK', 
+    'NORTH CAROLINA', 'NORTH DAKOTA', 'OHIO', 'OKLAHOMA', 'OREGON', 
+    'PENNSYLVANIA', 'RHODE ISLAND', 'SOUTH CAROLINA', 'SOUTH DAKOTA', 
+    'TENNESSEE', 'TEXAS', 'UTAH', 'VERMONT', 'VIRGINIA', 'WASHINGTON', 
+    'WEST VIRGINIA', 'WISCONSIN', 'WYOMING', 'NATIONAL'
+]
+
+
 def test_get_age_df():
     ''' 
         Test the following conditions for get_age_df():
@@ -158,42 +182,43 @@ def test_combine_sexrace_data():
 
 
 def test_homogenize_age_data():
-    ''' Test conditions for homogenize_age_data():
-    - the correct age brackets are present
-    - data is in the correct shape
-    - state ID's are present
-    - state labels are present
+    ''' 
+        Test conditions for homogenize_age_data():
+            - the correct age brackets are present
+            - data is in the correct shape
+            - state ID's are present
+            - state labels are present
     '''
-    print("\n****** Test for homogenize_age_data() ******")
 
     # smoke test
-    print("Smoke test...")
-    combined = combine_age_data(EXAMPLE_AGE_DIR, EXAMPLE_LAW_CSV_PATH)
+    combined = combine_age_data(EXAMPLE_DIR_AGE, EXAMPLE_PATH_LAW)
     df = homogenize_age_data(combined)
-    print(df.head())
-    print("passed")
 
     # test data is in correct shape
-    print("Testing data is in correct shape...")
-    assert len(df) == 55 
-    print("passed")
+    assert len(df) == FINISHED_LENGTH_AGE
 
-    # test the state ID's are present
-    print("Testing presence of state ID's...")
+    # test the state IDs and labels are present
     assert all(df['id'].unique() == STATE_NUMS)
-    print("passed")
-    
-    # test the state labels are present
-    print("Testing presence of state labels...")
     assert all(df['STATE'].unique() == STATE_NAMES)
-    print("passed")
+
 
 def test_homogenize_sexrace_data():
-    ''' Test standardization of all sexrace data. '''
-    pass 
+    ''' 
+        Test conditions for homogenize_age_data():
+            - the correct age brackets are present
+            - data is in the correct shape
+            - state ID's are present
+            - state labels are present
+    '''
 
-test_get_age_df()
-test_get_sexrace_df()
-test_combine_age_data()
-test_combine_sexrace_data()
-test_homogenize_age_data()
+    # smoke test
+    combined = combine_sexrace_data(EXAMPLE_DIR_SEX, EXAMPLE_PATH_LAW)
+    df = homogenize_sexrace_data(combined)
+
+    # test data is in correct shape
+    # assert len(df) == FINISHED_LENGTH_AGE
+
+    # test the state IDs and labels are present
+    assert all(df['id'].unique() == STATE_NUMS)
+    assert all(df['STATE'].unique() == STATE_NAMES)
+
