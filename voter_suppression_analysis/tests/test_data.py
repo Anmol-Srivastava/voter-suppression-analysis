@@ -10,12 +10,12 @@ from voter_suppression_analysis.data.processing import \
 
 
 # useful constants for file locations
-EXAMPLE_PATH_AGE = './sample_data/age_01.csv'
-EXAMPLE_PATH_SEX = './sample_data/sex_01.csv'
-EXAMPLE_PATH_LAW = './sample_data/law_01.csv'
+EXAMPLE_PATH_AGE = '../tests/sample_data/age_01.csv'
+EXAMPLE_PATH_SEX = '../tests/sample_data/sex_01.csv'
+EXAMPLE_PATH_LAW = '../tests/sample_data/law_01.csv'
 
-EXAMPLE_DIR_AGE = './sample_data/example_age_folder/'
-EXAMPLE_DIR_SEX = './sample_data/example_sex_folder/'
+EXAMPLE_DIR_AGE = '../tests/sample_data/example_age_folder/'
+EXAMPLE_DIR_SEX = '../tests/sample_data/example_sex_folder/'
 
 GARBAGE_PATH = str(random.randint(0,9))  
 
@@ -109,32 +109,23 @@ def test_combine_age_data():
     '''
 
     # smoke test
-    df = combine_age_data(EXAMPLE_AGE_DIR, EXAMPLE_LAW_CSV_PATH)
+    df = combine_age_data(EXAMPLE_DIR_AGE, EXAMPLE_PATH_LAW)
 
     # test dataframe has enough data
-    print("Testing dataframe has enough data...")
     assert len(df) == 8
-    print("passed")
 
     # check if invalid file paths break function
-    print("Testing invalid file path input...")
     invalid_file_caught = False
+
     try:
         garbage_df = combine_age_data(GARBAGE_FILE_PATH)
     except:
         invalid_file_caught = True
-    assert invalid_file_caught
-    print("passed")
 
-    # check legislative data is present
-    print("Testing legislative data is present...")
-    assert True
-    print("passed")
+    assert invalid_file_caught
 
     # check NATIONAL label is in place
-    print("Testing NATIONAL label is in place...")
     assert df['STATE'][0] == 'NATIONAL'
-    print("passed")
 
 
 def test_combine_sexrace_data():
