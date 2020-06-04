@@ -1,5 +1,6 @@
 ''' FUNCTIONS TO TEST DATA PROCESSING FUNCTIONALITY '''
 
+import os 
 import random
 import pandas as pd 
 
@@ -10,12 +11,12 @@ from voter_suppression_analysis.data.processing import \
 
 
 # useful constants for file locations
-EXAMPLE_PATH_AGE = 'samples/age_01.csv'
-EXAMPLE_PATH_SEX = 'samples/sex_01.csv'
-EXAMPLE_PATH_LAW = 'samples/law_01.csv'
+EXAMPLE_PATH_AGE = os.path.join(os.getcwd(), '/samples/age_01.csv')
+EXAMPLE_PATH_SEX = os.path.join(os.getcwd(), '/samples/sex_01.csv')
+EXAMPLE_PATH_LAW = os.path.join(os.getcwd(), '/samples/law_01.csv')
 
-EXAMPLE_DIR_AGE = 'samples/example_age_folder/'
-EXAMPLE_DIR_SEX = 'samples/example_sex_folder/'
+EXAMPLE_DIR_AGE = os.path.join(os.getcwd(), '/samples/example_age_folder/')
+EXAMPLE_DIR_SEX = os.path.join(os.getcwd(), '/samples/example_sex_folder/')
 
 GARBAGE_PATH = str(random.randint(0,9))  
 
