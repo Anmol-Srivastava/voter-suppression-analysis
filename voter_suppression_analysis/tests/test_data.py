@@ -4,8 +4,8 @@ import random
 import pandas as pd 
 
 from voter_suppression_analysis.data.processing import \
-    get_age_df, get_sexrace_df, 
-    combine_age_data, combine_sexrace_data, 
+    get_age_df, get_sexrace_df, \
+    combine_age_data, combine_sexrace_data, \
     homogenize_age_data, homogenize_sexrace_data
 
 
@@ -57,50 +57,42 @@ def test_get_age_df():
     assert all(df.columns == EXPECTED_AGE_COLUMNS)
 
     # check punctuation marks have been removed
-    found_periods = df.Age.str.contains('.').any()
-    assert (found_periods == False)
-    
+    found_punctuation = df.Age.str.contains('.').any()
+    assert (found_punctuation == False)
+
 
 def test_get_sexrace_df():
-    ''' Test the following conditions for get_sexrace_df():
-    - function runs
-    - function breaks with wrong filepath
-    - resulting dataframe has right columns
-    - resulting df has data
-    - punctuation has been removed
+    ''' 
+        Test the following conditions for get_sexrace_df():
+            - function runs
+            - function breaks with wrong filepath
+            - resulting dataframe has right columns
+            - resulting df has data
+            - punctuation has been removed
     '''
-    print("\n****** Test for get_sexrace_df() ******")
 
     # smoke test
-    print("Smoke test...")
-    df = get_sexrace_df(EXAMPLE_SEX_CSV_PATH)
-    print(df)
-    print("passed")
-
+    df = get_sexrace_df(EXAMPLE_PATH_SEX)
+   
     # check if invalid file paths break function
-    print("Testing invalid file path input...")
     invalid_file_caught = False
+    
     try:
         garbage_df = get_sex_df(GARBAGE_FILE_PATH)
     except:
         invalid_file_caught = True
+
     assert invalid_file_caught
-    print("passed")
 
     # check resulting df has data
-    print("Testing dataframe contains data...")
     assert len(df) > 0
-    print("passed")
 
     # check resulting df has correct columns
-    print("Testing column names are as expected...")
     assert all(df.columns == EXPECTED_SEX_COLUMNS)
-    print("passed")
 
     # check punctuation has been removed
-    print("Testing formatting fixes...")
-    assert df["Group"][0] == "Total"
-    print("passed")
+    found_punctuation = df.Group.str.contains('.').any()
+    assert (found_punctuation == False)
 
 
 def test_combine_age_data():
