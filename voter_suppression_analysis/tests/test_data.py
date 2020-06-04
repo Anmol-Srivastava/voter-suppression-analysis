@@ -215,9 +215,6 @@ def test_homogenize_sexrace_data():
     combined = combine_sexrace_data(EXAMPLE_DIR_SEX, EXAMPLE_PATH_LAW)
     df = homogenize_sexrace_data(combined)
 
-    # test data is in correct shape
-    # assert len(df) == FINISHED_LENGTH_AGE
-
     # test the state IDs and labels are present
     assert all(df['id'].unique() == STATE_NUMS)
     assert all(df['STATE'].unique() == STATE_NAMES)
