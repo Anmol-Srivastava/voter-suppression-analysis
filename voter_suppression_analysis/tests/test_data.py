@@ -13,12 +13,12 @@ from voter_suppression_analysis.data.processing import \
 
 # useful constants for file locations
 CWD = Path(__file__).parent
-EXAMPLE_PATH_AGE = CWD + '../data/samples/age_01.csv'
-EXAMPLE_PATH_SEX = CWD + '/samples/sex_01.csv'
-EXAMPLE_PATH_LAW = CWD + '/samples/law_01.csv'
+EXAMPLE_PATH_AGE = CWD / '../data/samples/age_01.csv'
+EXAMPLE_PATH_SEX = CWD / '/samples/sex_01.csv'
+EXAMPLE_PATH_LAW = CWD / '/samples/law_01.csv'
 
-EXAMPLE_DIR_AGE = CWD + '/samples/example_age_folder/'
-EXAMPLE_DIR_SEX = CWD + '/samples/example_sex_folder/'
+EXAMPLE_DIR_AGE = CWD / '/samples/example_age_folder/'
+EXAMPLE_DIR_SEX = CWD / '/samples/example_sex_folder/'
 
 GARBAGE_PATH = str(random.randint(0,9))  
 
