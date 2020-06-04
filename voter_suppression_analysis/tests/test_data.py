@@ -10,12 +10,12 @@ from voter_suppression_analysis.data.processing import \
 
 
 # useful constants for file locations
-EXAMPLE_PATH_AGE = '../tests/sample_data/age_01.csv'
-EXAMPLE_PATH_SEX = '../tests/sample_data/sex_01.csv'
-EXAMPLE_PATH_LAW = '../tests/sample_data/law_01.csv'
+EXAMPLE_PATH_AGE = 'samples/age_01.csv'
+EXAMPLE_PATH_SEX = 'samples/sex_01.csv'
+EXAMPLE_PATH_LAW = 'samples/law_01.csv'
 
-EXAMPLE_DIR_AGE = '../tests/sample_data/example_age_folder/'
-EXAMPLE_DIR_SEX = '../tests/sample_data/example_sex_folder/'
+EXAMPLE_DIR_AGE = 'samples/example_age_folder/'
+EXAMPLE_DIR_SEX = 'samples/example_sex_folder/'
 
 GARBAGE_PATH = str(random.randint(0,9))  
 
@@ -112,7 +112,7 @@ def test_combine_age_data():
     df = combine_age_data(EXAMPLE_DIR_AGE, EXAMPLE_PATH_LAW)
 
     # test dataframe has enough data
-    assert len(df) == 8
+    assert len(df) > 0
 
     # check if invalid file paths break function
     invalid_file_caught = False
@@ -129,44 +129,32 @@ def test_combine_age_data():
 
 
 def test_combine_sexrace_data():
-    ''' Test following conditions for combine_sexrace_data():
-    - resulting dataframe has all the data
-    - invalid filepath doesn't work 
-    - legislative data is present
-    - NATIONAL label has been substituted for US 
+    ''' 
+        Test following conditions for combine_sexrace_data():
+            - resulting dataframe has all the data
+            - invalid filepath doesn't work 
+            - legislative data is present
+            - NATIONAL label has been substituted for US 
     '''
-    print("\n****** Test for combine_sexrace_data() ******")
 
     # smoke test
-    print("Smoke test...")
-    df = combine_sexrace_data(EXAMPLE_SEXRACE_DIR, EXAMPLE_LAW_CSV_PATH)
-    print(df)
-    print("passed")
+    df = combine_sexrace_data(EXAMPLE_DIR_SEX, EXAMPLE_PATH_LAW)
 
     # test dataframe has enough data
-    print("Testing dataframe has enough data...")
-    assert len(df) == 2
-    print("passed")
+    assert len(df) > 0
 
     # check if invalid file paths break function
-    print("Testing invalid file path input...")
     invalid_file_caught = False
+
     try:
         garbage_df = combine_age_data(GARBAGE_FILE_PATH)
     except:
         invalid_file_caught = True
-    assert invalid_file_caught
-    print("passed")
 
-    # check legislative data is present
-    print("Testing legislative data is present...")
-    assert True
-    print("passed")
+    assert invalid_file_caught
 
     # check NATIONAL label is in place
-    print("Testing NATIONAL label is in place...")
     assert df['STATE'][0] == 'NATIONAL'
-    print("passed")
 
 
 def test_homogenize_age_data():
