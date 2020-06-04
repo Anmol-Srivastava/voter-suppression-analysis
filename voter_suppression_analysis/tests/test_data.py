@@ -1,8 +1,9 @@
 ''' FUNCTIONS TO TEST DATA PROCESSING FUNCTIONALITY '''
 
-import os 
 import random
 import pandas as pd 
+
+from pathlib import Path
 
 from voter_suppression_analysis.data.processing import \
     get_age_df, get_sexrace_df, \
@@ -11,13 +12,13 @@ from voter_suppression_analysis.data.processing import \
 
 
 # useful constants for file locations
-curr = os.path.abspath(__file__)
-EXAMPLE_PATH_AGE = os.path.join(os.path.dirname(curr), '/samples/age_01.csv')
-EXAMPLE_PATH_SEX = os.path.join(os.path.dirname(curr), '/samples/sex_01.csv')
-EXAMPLE_PATH_LAW = os.path.join(os.path.dirname(curr), '/samples/law_01.csv')
+CWD = Path(__file__).parent
+EXAMPLE_PATH_AGE = CWD + '/samples/age_01.csv'
+EXAMPLE_PATH_SEX = CWD + '/samples/sex_01.csv'
+EXAMPLE_PATH_LAW = CWD + '/samples/law_01.csv'
 
-EXAMPLE_DIR_AGE = os.path.join(os.getcwd(), '/samples/example_age_folder/')
-EXAMPLE_DIR_SEX = os.path.join(os.getcwd(), '/samples/example_sex_folder/')
+EXAMPLE_DIR_AGE = CWD + '/samples/example_age_folder/'
+EXAMPLE_DIR_SEX = CWD + '/samples/example_sex_folder/'
 
 GARBAGE_PATH = str(random.randint(0,9))  
 
