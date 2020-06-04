@@ -1,41 +1,37 @@
 import altair as alt
 from vega_datasets import data
-import requests
-import geopandas as gpd
-import json
-import re
 
-# A dropdown filter
+# Dropdown filters
 categories_age = ['Total', '18 to 44', '45 to 65', '65+']
 catage_dropdown = alt.binding_select(options=categories_age)
-cat_select_age = alt.selection_single(fields=['group'],
+cat_select_age = alt.selection_single(fields=['Group'],
                                   bind=catage_dropdown,
-                                  name="Demographic",
-                                  init={'group':'Total'})
+                                  name="Age",
+                                  init={'Group':'Total'})
 categories_demo = ['Total', 'Male', 'Female', 'White', 'Black',
                      'Asian & Pacific Islander','Hispanic']
 catdemo_dropdown = alt.binding_select(options=categories_demo)
-cat_select_demo = alt.selection_single(fields=['group'],
+cat_select_demo = alt.selection_single(fields=['Group'],
                                   bind=catdemo_dropdown,
                                   name="Demographic",
-                                  init={'group':'Total'})
+                                  init={'Group':'Total'})
 
 
-# A slider filter
+# A slider filter for election years
 slider = alt.binding_range(min=2000, max=2018, step=2, name='Election Year')
-select_yr = alt.selection_single(name='SelectorName', fields=['yr'],
-                                   bind=slider, init={'yr': 2000})
+select_yr = alt.selection_single(name='SelectorName', fields=['Year'],
+                                   bind=slider, init={'Year': 2000})
 
 
 
 def us_map_chart(df_in, map_value, map_title,selection_link=select_yr):
     df = df_in.copy()
-    PIVOT_COLUMNS = ['state','id','group','yr']
+    PIVOT_COLUMNS = ['STATE','id','Group','Year']
     columns_keep = PIVOT_COLUMNS + [map_value]
     year_columns = [str(year) for year in range(2000, 2019, 2)]
 
-    df_pivot = df[columns_keep].pivot_table(index=['id','state','group'],
-                                                                             columns='yr', values=map_value)
+    df_pivot = df[columns_keep].pivot_table(index=['id','STATE','Group'],
+                                                                             columns='Year', values=map_value)
     mapdf = df_pivot.reset_index()
     mapdf.columns = mapdf.columns.astype(str)
 
@@ -49,14 +45,14 @@ def us_map_chart(df_in, map_value, map_title,selection_link=select_yr):
         type='albersUsa'
     ).transform_lookup(
         lookup='id',
-        from_=alt.LookupData(mapdf.loc[mapdf.group=='Total'], 'id', ['state']+year_columns)
+        from_=alt.LookupData(mapdf.loc[mapdf.Group=='Total'], 'id', ['STATE']+year_columns)
     ).transform_fold(
-        year_columns, as_=['yr', 'Percent']
+        year_columns, as_=['Year', 'Percent']
     ).transform_calculate(
-        yr='parseInt(datum.yr)',
+        Year='parseInt(datum.Year)',
         Percent='isValid(datum.Percent) ? datum.Percent : -1'
     ).encode(
-        tooltip=['state:N','Percent:Q'],
+        tooltip=['STATE:N','Percent:Q'],
         color = alt.condition(
             'datum.Percent > 0',
             alt.Color('Percent:Q', scale=alt.Scale(domain=[0.2,.9],scheme='yellowgreenblue', type='linear')),
@@ -65,8 +61,8 @@ def us_map_chart(df_in, map_value, map_title,selection_link=select_yr):
         selection_link
     ).properties(
         title=map_title,
-        width=300,
-        height=200
+        width=500,
+        height=300
     ).transform_filter(
         selection_link
     )
@@ -82,18 +78,19 @@ def scatter_turnout(df_in, x_value, y_value, color_variable, title, x_title, y_t
     click = alt.selection_multi(encodings=['color'])
 
     df = df_in.copy()
+    df = df.loc[df.STATE!='NATIONAL']
 
     scatter = alt.Chart().mark_point().encode(
         x=alt.X(x_value, title=x_title,
                scale=alt.Scale(domain=[.15, .96])),
         y=alt.Y(y_value, title=y_title,
                scale=alt.Scale(domain=[.15, .93])),
-        size=alt.Size('total:Q', title='Total Eligible Voters'),
+        size=alt.Size('Total:Q', title='Total Eligible Voters'),
         color=alt.condition(highlight, color_variable, alt.value('lightgray'), legend=None),
-        tooltip=[alt.Tooltip('state:N', title='State'),
-                 alt.Tooltip('total:Q', title='Total Eligible Voters'),
-                 alt.Tooltip('total_reg:Q', title='Percent Registered Voters'),
-                 alt.Tooltip('total_voted:Q', title='Percent Voted')]
+        tooltip=[alt.Tooltip('STATE:N', title='State'),
+                 alt.Tooltip('Total:Q', title='Total Eligible Voters'),
+                 alt.Tooltip('Total Registered:Q', title='Percent Registered Voters'),
+                 alt.Tooltip('Total Voted:Q', title='Percent Voted')]
     ).add_selection(
         select_slider
     ).transform_filter(
@@ -107,9 +104,11 @@ def scatter_turnout(df_in, x_value, y_value, color_variable, title, x_title, y_t
     ).transform_filter(
         click
     ).properties(
+        title=title,
         width=500,
         height=275
     )
+
 
     bars = alt.Chart().mark_bar().encode(
         x='count()',
@@ -128,4 +127,4 @@ def scatter_turnout(df_in, x_value, y_value, color_variable, title, x_title, y_t
         click
     )
 
-    return alt.vconcat(scatter, bars, data=df, title=title)
+    return alt.vconcat(scatter, bars, data=df)
