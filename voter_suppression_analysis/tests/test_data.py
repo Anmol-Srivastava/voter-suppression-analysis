@@ -4,8 +4,8 @@ import random
 import pandas as pd 
 import sys
 
-sys.path.insert(1, '../data')
-from processing import \
+sys.path.insert(1, '../')
+from data.processing import \
     get_age_df, get_sexrace_df,\
     combine_age_data, combine_sexrace_data,\
     homogenize_age_data, homogenize_sexrace_data
