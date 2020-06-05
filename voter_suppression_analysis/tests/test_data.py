@@ -6,7 +6,7 @@ import pandas as pd
 
 from pathlib import Path
 
-from voter_suppression_analysis.data.processing_v2 import \
+from voter_suppression_analysis.data.processing import \
     get_age_df, get_sexrace_df, \
     combine_age_data, combine_sexrace_data, \
     homogenize_age_data, homogenize_sexrace_data
