@@ -13,13 +13,13 @@ from voter_suppression_analysis.data.processing import \
 
 
 # useful constants for file locations
-CWD = Path(__file__).parent
+CWD = Path.cwd()
 EXAMPLE_PATH_AGE = CWD / '../data/samples/age_01.csv'
 EXAMPLE_PATH_SEX = CWD / '../data/samples/sex_01.csv'
 EXAMPLE_PATH_LAW = CWD / '../data/samples/law_01.csv'
 
-EXAMPLE_DIR_AGE = '../*data*/*samples*/*example_age_folder*/*'
-EXAMPLE_DIR_SEX = '../*data*/*samples*/*example_sex_folder*/*'
+EXAMPLE_DIR_AGE = str(CWD / '../*data*/*samples*/*example_age_folder*/*')
+EXAMPLE_DIR_SEX = str(CWD / '../*data*/*samples*/*example_sex_folder*/*')
 
 GARBAGE_PATH = str(random.randint(0,9))  
 
@@ -135,8 +135,8 @@ def test_combine_age_data():
     '''
     
     # tmp 
+    assert len(EXAMPLE_DIR_AGE) > 0 
     assert len(glob.glob(EXAMPLE_DIR_AGE)) > 1
-    assert len(EXAMPLE_DIR_AGE) == 2
 
     # smoke test
     df = combine_age_data(EXAMPLE_DIR_AGE, EXAMPLE_PATH_LAW)
