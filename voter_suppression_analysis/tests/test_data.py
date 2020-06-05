@@ -142,13 +142,13 @@ def test_combine_age_data():
         df = get_age_df(file)
         dfs.append(df)
 
-    assert len(dfs) > 0 
+    assert len(str(CWD / EXAMPLE_DIR_AGE)) == 2
 
     # smoke test
     df = combine_age_data(EXAMPLE_DIR_AGE, EXAMPLE_PATH_LAW)
 
     # test dataframe has enough data
-    assert str(CWD / EXAMPLE_DIR_AGE) == '2' 
+    assert len(df) > 0
 
     # check if invalid file paths break function
     invalid_file_caught = False
