@@ -68,7 +68,7 @@ def test_get_age_df():
             - resulting df has data
             - punctuation has been removed
     '''
-    
+
     # smoke tet
     df = get_age_df(EXAMPLE_PATH_AGE)
 
@@ -134,10 +134,6 @@ def test_combine_age_data():
             - NATIONAL label has been substituted for US 
     '''
     
-    # tmp 
-    assert len(glob.glob(EXAMPLE_DIR_AGE)) > 1
-    assert len(EXAMPLE_DIR_AGE) == 2
-
     # smoke test
     df = combine_age_data(EXAMPLE_DIR_AGE, EXAMPLE_PATH_LAW)
 
