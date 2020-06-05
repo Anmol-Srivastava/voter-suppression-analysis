@@ -13,7 +13,7 @@ from voter_suppression_analysis.data.processing import \
 
 
 # useful constants for file locations
-CWD = Path.cwd()
+CWD = Path(__file__).parent
 EXAMPLE_PATH_AGE = CWD / '../data/samples/age_01.csv'
 EXAMPLE_PATH_SEX = CWD / '../data/samples/sex_01.csv'
 EXAMPLE_PATH_LAW = CWD / '../data/samples/law_01.csv'
@@ -68,7 +68,7 @@ def test_get_age_df():
             - resulting df has data
             - punctuation has been removed
     '''
-    print(EXAMPLE_PATH_AGE)
+    
     # smoke tet
     df = get_age_df(EXAMPLE_PATH_AGE)
 
@@ -135,8 +135,8 @@ def test_combine_age_data():
     '''
     
     # tmp 
-    assert len(EXAMPLE_DIR_AGE) > 0 
     assert len(glob.glob(EXAMPLE_DIR_AGE)) > 1
+    assert len(EXAMPLE_DIR_AGE) == 2
 
     # smoke test
     df = combine_age_data(EXAMPLE_DIR_AGE, EXAMPLE_PATH_LAW)
