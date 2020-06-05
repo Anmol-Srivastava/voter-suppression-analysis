@@ -133,6 +133,10 @@ def test_combine_age_data():
             - legislative data is present
             - NATIONAL label has been substituted for US 
     '''
+    
+    # tmp 
+    assert len(glob.glob(EXAMPLE_DIR_AGE)) > 1
+    assert len(EXAMPLE_DIR_AGE) == 2
 
     # smoke test
     df = combine_age_data(EXAMPLE_DIR_AGE, EXAMPLE_PATH_LAW)
