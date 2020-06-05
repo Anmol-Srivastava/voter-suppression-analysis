@@ -18,8 +18,8 @@ EXAMPLE_PATH_AGE = CWD / '../data/samples/age_01.csv'
 EXAMPLE_PATH_SEX = CWD / '../data/samples/sex_01.csv'
 EXAMPLE_PATH_LAW = CWD / '../data/samples/law_01.csv'
 
-EXAMPLE_DIR_AGE = '../data/samples/example_age_folder/'
-EXAMPLE_DIR_SEX = '../data/samples/example_sex_folder/'
+EXAMPLE_DIR_AGE = '../*data*/*samples*/*example_age_folder*/*'
+EXAMPLE_DIR_SEX = '../*data*/*samples*/*example_sex_folder*/*'
 
 GARBAGE_PATH = str(random.randint(0,9))  
 
@@ -133,16 +133,6 @@ def test_combine_age_data():
             - legislative data is present
             - NATIONAL label has been substituted for US 
     '''
-
-    """tmp copy of code"""
-    files = glob.glob(EXAMPLE_DIR_AGE)
-    dfs = []
-
-    for file in files:
-        df = get_age_df(file)
-        dfs.append(df)
-
-    assert len(str(CWD / EXAMPLE_DIR_AGE)) == 2
 
     # smoke test
     df = combine_age_data(EXAMPLE_DIR_AGE, EXAMPLE_PATH_LAW)
