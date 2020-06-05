@@ -143,6 +143,7 @@ def combine_age_data(file_expression=AGE_FILES, law_filepath=LAWS_DATA_PATH):
         print('Reading %s...' % age_file)
         df = get_age_df(age_file)
         df_list.append(df)
+    
     combined = pd.concat(df_list, axis=0, ignore_index=True)
 
     # load legislative data
