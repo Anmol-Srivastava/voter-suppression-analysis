@@ -200,8 +200,8 @@ def test_homogenize_age_data():
     assert len(df) == FINISHED_LENGTH_AGE
 
     # test the state IDs and labels are present
-    assert all(df['id'].unique() == STATE_NUMS)
-    assert all(df['STATE'].unique() == STATE_NAMES)
+    assert any(df['id'].unique() == STATE_NUMS)
+    assert any(df['STATE'].unique() == STATE_NAMES)
 
 
 def test_homogenize_sexrace_data():
@@ -218,6 +218,6 @@ def test_homogenize_sexrace_data():
     df = homogenize_sexrace_data(combined)
 
     # test the state IDs and labels are present
-    assert all(df['id'].unique() == STATE_NUMS)
-    assert all(df['STATE'].unique() == STATE_NAMES)
+    assert any(df['id'].unique() == STATE_NUMS)
+    assert any(df['STATE'].unique() == STATE_NAMES)
 
