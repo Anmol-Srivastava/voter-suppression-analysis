@@ -270,7 +270,7 @@ def homogenize_age_data(df):
     result = df_states.merge(result, how='outer', left_on='STATE', right_on='STATE')
     return result
 
-def homogenize_sexrace_data(df_in):
+def homogenize_sexrace_data(df_in, laws_file_path=LAWS_DATA_PATH):
     """
     Structures the age data by creating the desired demographic groups
     of 'Total','Male', 'Female', 'White', 'Black', 'Asian & Pacific Islander',
@@ -312,8 +312,8 @@ def homogenize_sexrace_data(df_in):
         df_temp = df_groups_kept.pivot_table(index=['STATE','Year'], columns='Group', values=col)
         df_temp = df_temp.reset_index()
         if(('Male' in df_temp.columns)&('Female' in df_temp.columns)):
-        	totals = df_temp[['Male', 'Female']].sum(axis=1)
-        	df_temp.Total = totals
+            totals = df_temp[['Male', 'Female']].sum(axis=1)
+            df_temp.Total = totals
         df_temp_unpivot = df_temp.melt(id_vars=['STATE','Year'], value_name=col)
         if col == 'Total Citizen':
             df_merge = df_temp_unpivot.copy()
@@ -322,7 +322,7 @@ def homogenize_sexrace_data(df_in):
         df_merge = pd.merge(df_merge, df_temp_unpivot, how='left',
                            left_on=['STATE', 'Year', 'Group'], right_on=['STATE', 'Year', 'Group'])
 
-    laws_df = pd.read_csv(LAWS_DATA_PATH)
+    laws_df = pd.read_csv(laws_file_path)
     laws_df.STATE = laws_df.STATE.str.upper()
 
     results = df_merge.merge(laws_df,
