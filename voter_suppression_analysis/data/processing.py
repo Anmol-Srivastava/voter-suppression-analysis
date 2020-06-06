@@ -270,7 +270,7 @@ def homogenize_age_data(df):
     result = df_states.merge(result, how='outer', left_on='STATE', right_on='STATE')
     return result
 
-def homogenize_sexrace_data(df_in, laws_file_path=LAWS_DATA_PATH):
+def homogenize_sexrace_data(df_in):
     """
     Structures the age data by creating the desired demographic groups
     of 'Total','Male', 'Female', 'White', 'Black', 'Asian & Pacific Islander',
@@ -309,28 +309,23 @@ def homogenize_sexrace_data(df_in, laws_file_path=LAWS_DATA_PATH):
 
     # interatively validating the 'total's values
     for col in TOTALS_COLUMNS:
-        df_temp = df_groups_kept.pivot_table(index=['STATE','Year'], columns='Group', values=col)
+        df_temp = df_groups_kept.pivot_table(index=['STATE','Year','restrictive_id_laws','felony_disenfranchisement'],
+                                             columns='Group', values=col)
         df_temp = df_temp.reset_index()
-        if(('Male' in df_temp.columns)&('Female' in df_temp.columns)):
+        if (('Male' in df_temp.columns) & ('Female' in df_temp.columns)):
             totals = df_temp[['Male', 'Female']].sum(axis=1)
             df_temp.Total = totals
-        df_temp_unpivot = df_temp.melt(id_vars=['STATE','Year'], value_name=col)
+        df_temp_unpivot = df_temp.melt(id_vars=['STATE','Year','restrictive_id_laws','felony_disenfranchisement'],
+                                       value_name=col)
         if col == 'Total Citizen':
             df_merge = df_temp_unpivot.copy()
         else:
             next
         df_merge = pd.merge(df_merge, df_temp_unpivot, how='left',
-                           left_on=['STATE', 'Year', 'Group'], right_on=['STATE', 'Year', 'Group'])
-
-    laws_df = pd.read_csv(laws_file_path)
-    laws_df.STATE = laws_df.STATE.str.upper()
-
-    results = df_merge.merge(laws_df,
-                               how='outer',
-                               left_on='STATE',
-                               right_on='STATE')
+                           left_on=['STATE', 'Year', 'Group','restrictive_id_laws','felony_disenfranchisement'],
+                            right_on=['STATE', 'Year', 'Group','restrictive_id_laws','felony_disenfranchisement'])
     # reformating values and column names
-    df_merge_kept = results.drop('Total Citizen_y', axis=1)
+    df_merge_kept = df_merge.drop('Total Citizen_y', axis=1)
     df_merge_kept.STATE = df_merge_kept.STATE.str.upper()
     df_demo_out = df_merge_kept.rename(columns={"Total Citizen_x":'Total'})
     df_demo_out = df_demo_out.sort_values(by=['Year', 'STATE']).round()

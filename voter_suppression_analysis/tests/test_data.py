@@ -215,7 +215,7 @@ def test_homogenize_sexrace_data():
 
     # smoke test
     combined = combine_sexrace_data(EXAMPLE_DIR_SEX, EXAMPLE_PATH_LAW)
-    df = homogenize_sexrace_data(combined, EXAMPLE_PATH_LAW)
+    df = homogenize_sexrace_data(combined)
 
     # test the state IDs and labels are present
     assert all(df['id'].unique() == STATE_NUMS)
