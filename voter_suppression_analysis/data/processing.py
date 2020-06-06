@@ -311,8 +311,9 @@ def homogenize_sexrace_data(df_in):
     for col in TOTALS_COLUMNS:
         df_temp = df_groups_kept.pivot_table(index=['STATE','Year'], columns='Group', values=col)
         df_temp = df_temp.reset_index()
-        totals = df_temp[['Male', 'Female']].sum(axis=1)
-        df_temp.Total = totals
+        if(('Male' in df_temp.columns)&('Female' in df_temp.columns)):
+        	totals = df_temp[['Male', 'Female']].sum(axis=1)
+        	df_temp.Total = totals
         df_temp_unpivot = df_temp.melt(id_vars=['STATE','Year'], value_name=col)
         if col == 'Total Citizen':
             df_merge = df_temp_unpivot.copy()
