@@ -137,12 +137,12 @@ def test_combine_age_data():
     # test dataframe has enough data
     assert len(df_combined) > 0
 
-    # check if invalid file paths break function
+    # combine_age_data should throw ValueError if no files found to join
     invalid_file_caught = False
 
     try:
         df_combined = combine_age_data(GARBAGE_PATH)
-    except FileNotFoundError:
+    except ValueError:
         invalid_file_caught = True
 
     assert invalid_file_caught
@@ -166,7 +166,7 @@ def test_combine_sexrace_data():
     # test dataframe has enough data
     assert len(df_combined) > 0
 
-    # check if invalid file paths break function
+    # function will throw ValueError if no files found to combine 
     invalid_file_caught = False
 
     try:
