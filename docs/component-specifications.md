@@ -34,26 +34,22 @@
 - Output: 
     - live, updated version of same HTML file 
 
-## Interactions [TO BE REVISITED]
+## Interactions
 1. User changes 'year' value using visualization controls on browser.
-    - Browser sends changed settings of interactive map to Map Manager
-    - Map Manager retrieves modeled dataset from Modeling
-    - Map Manager filters data to the desired year
-    - Map Manager returns bokeh visualization for the changed settings
-    - Browser updates visualization with new bokeh view
+    - User changes settings of interactive map
+    - Dynamic JS within the output HTML file filters data to the desired year
+    - HTML file renders new Altair view of the visualization for the changed settings
     
 2. User selects a specific state using visualization controls on browser.
-    - Browser sends changed settings of interactive map to Map Manager
-    - Map Manager retrieves modeled dataset from Modeling
-    - Map Manager filters data to desired state/cluster and year 
-    - Map Manager returns bvisualization with state/cluster highlighted and accompanying anecdotes
-    - Browser updates visualization with new bokeh view
+    - User changes settings of interactive map to Map Manager
+    - Dynamic JS within output HTML file filters data to desired state/cluster and year
+    - HTML file renders new Altair view of visualization, for the changed settings
 
 ## Preliminary Plan 
 1. Create and organize desired package structure in repository
 2. Incorporate Git CI and test functionality
 3. Write scripts to appropriately process and combine data
 4. Write scripts to model and categorize data entries
-5. Develop template for bokeh map visualization (with interactive features)
+5. Develop template for Altair map visualization (with interactive features)
 6. Write scripts to simplify installation and launch of visualization
 7. Revisit model performance and add write-ups, time permitting
