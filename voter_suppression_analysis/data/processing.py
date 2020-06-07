@@ -140,7 +140,6 @@ def combine_age_data(file_expression=AGE_FILES, law_filepath=LAWS_DATA_PATH):
 
     # generate a dataframe from each file and combine
     for age_file in age_file_paths:
-        print('Reading %s...' % age_file)
         df = get_age_df(age_file)
         df_list.append(df)
     
@@ -180,10 +179,8 @@ def combine_sexrace_data(file_expression=SEXRACE_FILES, law_filepath=LAWS_DATA_P
     # retrieve all relevant file paths
     sex_file_paths = glob.glob(file_expression)
     df_list = []
-
     # generate a dataframe from each file and combine
     for sex_file in sex_file_paths:
-        print('Reading %s...' % sex_file)
         df = get_sexrace_df(sex_file)
         df_list.append(df)
     combined = pd.concat(df_list, axis=0, ignore_index=True)
