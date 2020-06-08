@@ -23,7 +23,7 @@ git clone https://github.com/Anmol-Srivastava/voter-suppression-analysis.git
 cd voter-suppression-analysis
 ```
 
-#### One-time set-up and activatoin of the necessary environment: 
+#### One-time set-up and activation of the necessary environment: 
 ```
 conda env create -f environment.yml
 conda activate vsa
@@ -43,11 +43,11 @@ python generate.py
 ## Structure
 
 - `docs`: early-stage functional and component specifications, technology reviews, presentations, and `pylint` test outputs
-- `examples`: Jupyter notebook guides for launching and exploring the visualization
-- `voter_suppression_analysis`: main module 
-  - `data`: raw and sanitized data, with an addtional `README`, and data-processing python script
-  - `figures`: mid-development figures and visualization-defining python script 
-  - `tests`: python scripts for testing data cleaning and visualization steps, as well as `pylint` integration 
+- `examples`: guides for exploring the visualizations
+- `voter_suppression_analysis`: main module, with python scripts for processing data and generating dashboard 
+  - `data`: raw, sanitized, and dummy data, with an addtional `README`
+  - `figures`: mid-development and final python-generated figures (dynamic `.html` files)
+  - `tests`: python scripts for testing cleaning and visualization steps
 
 ## Team
 
