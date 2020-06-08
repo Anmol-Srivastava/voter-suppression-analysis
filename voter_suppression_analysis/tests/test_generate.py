@@ -22,7 +22,7 @@ OUTPUT_FILE_PATH = '../figures/test_dashboard.html'
 
 EXAMPLE_DIR_AGE = str(CWD / '../*data*/*samples*/*example_age_folder*/*')
 EXAMPLE_DIR_SEX = str(CWD / '../*data*/*samples*/*example_sex_folder*/*')
-EXAMPLE_FILE_LAW = '../data/samples/law_01.csv'
+EXAMPLE_FILE_LAW = str(CWD / '../data/samples/law_01.csv')
 
 # making test DataFrames
 DF_AGE = combine_age_data(EXAMPLE_DIR_AGE, EXAMPLE_FILE_LAW)
