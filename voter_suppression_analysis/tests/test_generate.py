@@ -9,7 +9,7 @@ from voter_suppression_analysis.generate import \
     generate_map, generate_chart, generate_html
 
 from voter_suppression_analysis.processing import \
-    combine_age_data, combine_sexrace_data,
+    combine_age_data, combine_sexrace_data, \
     homogenize_age_data, homogenize_sexrace_data
 
 
@@ -63,6 +63,7 @@ def test_generate_chart():
 
     # type check
     assert isinstance(chart, EXPECTED_VIZ_TYPE)
+
 
 def test_generate_html():
     '''
