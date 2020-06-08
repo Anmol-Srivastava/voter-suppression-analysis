@@ -5,7 +5,12 @@ from pathlib import Path
 
 import altair as alt
 
-from voter_suppression_analysis import generate
+from voter_suppression_analysis.generate import \
+    generate_map, generate_chart, generate_html
+
+
+# anticipated object type of individual viz pieces
+EXPECTED_VIZ_TYPE = alt.vegalite.v4.api.VConcatChart
 
 
 def test_generate_map():
@@ -22,7 +27,7 @@ def test_generate_map():
     )
 
     # type check 
-    assert isinstance(map, alt.vegalite.v4.api.VConcatChart)
+    assert isinstance(map, EXPECTED_VIZ_TYPE)
 
 
 def test_generate_chart():
@@ -43,7 +48,7 @@ def test_generate_chart():
     )
 
     # type check
-    assert isinstance(chart, alt.vegalite.v4.api.VConcatChart)
+    assert isinstance(chart, EXPECTED_VIZ_TYPE)
 
 def test_generate_html():
     assert True
