@@ -19,12 +19,17 @@ EXPECTED_VIZ_TYPE = alt.vegalite.v4.api.VConcatChart
 # useful file locations
 CWD = Path(__file__).parent
 OUTPUT_FILE_PATH = '../figures/test_dashboard.html'
+
 EXAMPLE_DIR_AGE = str(CWD / '../*data*/*samples*/*example_age_folder*/*')
 EXAMPLE_DIR_SEX = str(CWD / '../*data*/*samples*/*example_sex_folder*/*')
+EXAMPLE_FILE_LAW = 'data/samples/law_01.csv'
 
 # making test DataFrames
-DF_AGE = homogenize_age_data(combine_age_data(EXAMPLE_DIR_AGE))
-DF_SEX = homogenize_sexrace_data(combine_sexrace_data(EXAMPLE_DIR_SEX))
+DF_AGE = combine_age_data(EXAMPLE_DIR_AGE, EXAMPLE_FILE_LAW)
+DF_AGE = homogenize_age_data(DF_AGE)
+
+DF_SEX = combine_sexrace_data(EXAMPLE_DIR_SEX, EXAMPLE_FILE_LAW)
+DF_SEX = homogenize_sexrace_data(DF_SEX)
 
 
 def test_generate_map():
