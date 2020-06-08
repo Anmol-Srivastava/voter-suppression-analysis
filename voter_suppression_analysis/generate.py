@@ -1,9 +1,14 @@
 ''' CODE TO GENERATE VISUALIZATIONS '''
 
+import os
+import sys
+
 import pandas as pd
 import altair as alt
 from vega_datasets import data
-import processing
+
+sys.path.insert(0, os.path.abspath('..'))
+from voter_suppression_analysis import processing
 
 
 # data and visualization locations
