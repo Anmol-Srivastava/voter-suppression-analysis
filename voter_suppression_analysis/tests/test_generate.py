@@ -19,7 +19,7 @@ EXEPECTED_CHART_TYPE = alt.vegalite.v4.api.VConcatChart
 
 # useful file locations
 CWD = Path(__file__).parent
-OUTPUT_FILE_PATH = '../figures/test_dashboard.html'
+OUTPUT_FILE_PATH = '/figures/test_dashboard.html'
 
 EXAMPLE_DIR_AGE = str(CWD / '../*data*/*samples*/*example_age_folder*/*')
 EXAMPLE_DIR_SEX = str(CWD / '../*data*/*samples*/*example_sex_folder*/*')
