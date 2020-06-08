@@ -1,6 +1,5 @@
 ''' CODE TO TEST DASHBOARD GENERATING FUNCTIONALITY '''
 
-import random
 from pathlib import Path
 
 import altair as alt
@@ -13,16 +12,16 @@ from voter_suppression_analysis.processing import \
     homogenize_age_data, homogenize_sexrace_data
 
 
-# anticipated object types of individual viz pieces
-EXPECTED_MAP_TYPE = alt.vegalite.v4.api.Chart
-EXPECTED_CHART_TYPE = alt.vegalite.v4.api.VConcatChart
-
 # useful file locations
 CWD = Path(__file__).parent
 OUTPUT_FILE_PATH = str(CWD / '../figures/test_dashboard.html')
 EXAMPLE_DIR_AGE = str(CWD / '../*data*/*samples*/*example_age_folder*/*')
 EXAMPLE_DIR_SEX = str(CWD / '../*data*/*samples*/*example_sex_folder*/*')
 EXAMPLE_FILE_LAW = str(CWD / '../data/samples/law_01.csv')
+
+# anticipated object types of individual viz pieces
+EXPECTED_MAP_TYPE = alt.vegalite.v4.api.Chart
+EXPECTED_CHART_TYPE = alt.vegalite.v4.api.VConcatChart
 
 # making test DataFrames
 DF_AGE = combine_age_data(EXAMPLE_DIR_AGE, EXAMPLE_FILE_LAW)
@@ -33,24 +32,24 @@ DF_SEX = homogenize_sexrace_data(DF_SEX)
 
 
 def test_generate_map():
-    ''' 
+    '''
     Test generate_map(). Note that attributes for all Altair objects were
-    set manually, value-testing them is hence redundant and fruitless. 
+    set manually, value-testing them is hence redundant and fruitless.
     '''
 
-    # smoke test 
-    map = generate_map(
+    # smoke test
+    map_obj = generate_map(
         DF_AGE,
         map_type='Percent Voted',
         map_title='X'
     )
 
-    # type check 
-    assert isinstance(map, EXPECTED_MAP_TYPE)
+    # type check
+    assert isinstance(map_obj, EXPECTED_MAP_TYPE)
 
 
 def test_generate_chart():
-    ''' 
+    '''
     Test generate_chart(). Again, attribute value-tests are excluded.
     '''
 
