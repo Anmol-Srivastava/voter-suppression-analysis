@@ -15,12 +15,11 @@ from voter_suppression_analysis.processing import \
 
 # anticipated object types of individual viz pieces
 EXPECTED_MAP_TYPE = alt.vegalite.v4.api.Chart
-EXEPECTED_CHART_TYPE = alt.vegalite.v4.api.VConcatChart
+EXPECTED_CHART_TYPE = alt.vegalite.v4.api.VConcatChart
 
 # useful file locations
 CWD = Path(__file__).parent
-OUTPUT_FILE_PATH = '/figures/test_dashboard.html'
-
+OUTPUT_FILE_PATH = str(CWD / '../figures/test_dashboard.html')
 EXAMPLE_DIR_AGE = str(CWD / '../*data*/*samples*/*example_age_folder*/*')
 EXAMPLE_DIR_SEX = str(CWD / '../*data*/*samples*/*example_sex_folder*/*')
 EXAMPLE_FILE_LAW = str(CWD / '../data/samples/law_01.csv')
@@ -75,12 +74,11 @@ def test_generate_html():
     '''
     Test generate_html(). Note this function does not return a value.
     '''
-    assert str(Path(OUTPUT_FILE_PATH)) == CWD
+
     # smoke test
     generate_html(DF_AGE, DF_SEX, OUTPUT_FILE_PATH)
 
     # check if file exists at expected location, is non empty
     file = Path(OUTPUT_FILE_PATH)
-    assert str(Path) == CWD
     assert file.is_file()
     assert file.stat().st_size != 0
