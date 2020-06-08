@@ -75,11 +75,12 @@ def test_generate_html():
     '''
     Test generate_html(). Note this function does not return a value.
     '''
-
+    assert str(Path(OUTPUT_FILE_PATH)) == CWD
     # smoke test
     generate_html(DF_AGE, DF_SEX, OUTPUT_FILE_PATH)
 
     # check if file exists at expected location, is non empty
     file = Path(OUTPUT_FILE_PATH)
+    assert str(Path) == CWD
     assert file.is_file()
     assert file.stat().st_size != 0
