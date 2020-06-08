@@ -8,12 +8,23 @@ import altair as alt
 from voter_suppression_analysis.generate import \
     generate_map, generate_chart, generate_html
 
+from voter_suppression_analysis.processing import \
+    combine_age_data, combine_sexrace_data,
+    homogenize_age_data, homogenize_sexrace_data
+
 
 # anticipated object type of individual viz pieces
 EXPECTED_VIZ_TYPE = alt.vegalite.v4.api.VConcatChart
 
-# test dashboard location
-TEST_PATH = '../figures/test_dashboard.html'
+# useful file locations
+CWD = Path(__file__).parent
+OUTPUT_FILE_PATH = '../figures/test_dashboard.html'
+EXAMPLE_DIR_AGE = str(CWD / '../*data*/*samples*/*example_age_folder*/*')
+EXAMPLE_DIR_SEX = str(CWD / '../*data*/*samples*/*example_sex_folder*/*')
+
+# making test DataFrames
+DF_AGE = homogenize_age_data(combine_age_data(EXAMPLE_DIR_AGE))
+DF_SEX = homogenize_sexrace_data(combine_sexrace_data(EXAMPLE_DIR_SEX))
 
 
 def test_generate_map():
@@ -59,7 +70,9 @@ def test_generate_html():
     '''
 
     # smoke test
-    generate_html(df_age, df_sex, TEST_PATH)
+    generate_html(DF_AGE, DF_SEX, OUTPUT_FILE_PATH)
 
-    # check if file exists at expected location 
-    assert True
+    # check if file exists at expected location, is non empty
+    file = Path(OUTPUT_FILE_PATH)
+    assert file.is_file()
+    assert file.stat().st_size != 0
