@@ -4,7 +4,7 @@ import random
 
 from pathlib import Path
 
-from voter_suppression_analysis.data.processing import \
+from voter_suppression_analysis.processing import \
     get_age_df, get_sexrace_df, \
     combine_age_data, combine_sexrace_data, \
     homogenize_age_data, homogenize_sexrace_data
@@ -13,12 +13,12 @@ from voter_suppression_analysis.data.processing import \
 # useful constants for file locations
 CWD = Path(__file__).parent
 
-EXAMPLE_PATH_AGE = CWD / '../data/samples/age_01.csv'
-EXAMPLE_PATH_SEX = CWD / '../data/samples/sex_01.csv'
-EXAMPLE_PATH_LAW = CWD / '../data/samples/law_01.csv'
+EXAMPLE_PATH_AGE = CWD / '/data/samples/age_01.csv'
+EXAMPLE_PATH_SEX = CWD / '/data/samples/sex_01.csv'
+EXAMPLE_PATH_LAW = CWD / '/data/samples/law_01.csv'
 
-EXAMPLE_DIR_AGE = str(CWD / '../*data*/*samples*/*example_age_folder*/*')
-EXAMPLE_DIR_SEX = str(CWD / '../*data*/*samples*/*example_sex_folder*/*')
+EXAMPLE_DIR_AGE = str(CWD / '/*data*/*samples*/*example_age_folder*/*')
+EXAMPLE_DIR_SEX = str(CWD / '/*data*/*samples*/*example_sex_folder*/*')
 
 GARBAGE_PATH = str(random.randint(0, 9))
 

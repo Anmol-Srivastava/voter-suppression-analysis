@@ -5,9 +5,9 @@ import pandas as pd
 
 
 # filepath expressions for data
-PATH_ALL_AGE = 'clean/*_age.csv'
-PATH_ALL_SEX = 'clean/*_sexrace.csv'
-PATH_LAWS = 'clean/supression.csv'
+PATH_ALL_AGE = 'data/clean/*_age.csv'
+PATH_ALL_SEX = 'data/clean/*_sexrace.csv'
+PATH_LAWS = 'data/clean/supression.csv'
 
 # useful constants for renaming and removing columns
 SEX_COLUMNS = [
