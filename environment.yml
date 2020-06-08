@@ -1,4 +1,4 @@
-name: ntf
+name: vsa
 channels:
   - conda-forge
   - defaults
