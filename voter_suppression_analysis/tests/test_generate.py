@@ -12,6 +12,8 @@ from voter_suppression_analysis.generate import \
 # anticipated object type of individual viz pieces
 EXPECTED_VIZ_TYPE = alt.vegalite.v4.api.VConcatChart
 
+# test dashboard location
+TEST_PATH = '../figures/test_dashboard.html'
 
 def test_generate_map():
     ''' 
@@ -51,4 +53,12 @@ def test_generate_chart():
     assert isinstance(chart, EXPECTED_VIZ_TYPE)
 
 def test_generate_html():
+    '''
+    Test generate_html(). Note this function does not return a value.
+    '''
+
+    # smoke test
+    generate_html(df_age, df_sex, TEST_PATH)
+
+    # check if file exists at expected location 
     assert True
