@@ -14,7 +14,7 @@ from voter_suppression_analysis.processing import \
 
 
 # anticipated object type of individual viz pieces
-EXPECTED_VIZ_TYPE = alt.vegalite.v4.api.VConcatChart
+EXPECTED_VIZ_TYPE = alt.vegalite.v4.api.Chart
 
 # useful file locations
 CWD = Path(__file__).parent
