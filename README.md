@@ -15,10 +15,7 @@ Our hope is that this dashboard draws attention to suppressed communities, while
 
 ## Installation
 
-*Please note:* 
-  - the following steps are intended for a Linux environment
-  - counterparts for other environments were not part of the initial scope, and are currently unavailable
-  - SOMETHING ABOUT WHICH STEPS ARE ONE-TIME :0
+*Please note:* the following steps are intended for a Linux environment.
 
 #### Clone and access the repository in a location of your choice:
 ```
@@ -26,14 +23,21 @@ git clone https://github.com/Anmol-Srivastava/voter-suppression-analysis.git
 cd voter-suppression-analysis
 ```
 
-#### Set up and activate the necessary environment: 
+#### One-time set-up and activatoin of the necessary environment: 
 ```
-help
+conda env create -f environment.yml
+conda activate vsa
+pip install -e
+python setup.py install --user
 ```
 
-#### Launch the dashboard:
+#### Generate the most up-to-date dashboard:
+
+*Please note:* the output should indicate the location of your generated file. Simply launch the `.html` file in your browser of choice, all interactivity and features are pre-loaded into the file's JS scripts.
+
 ```
-im in danger
+cd voter_suppression_analysis
+python generate.py
 ```
 
 ## Structure
