@@ -10,7 +10,7 @@ install:
   - conda update -q conda
   - conda info -a
   - conda env create -f environment.yml
-  - source activate ntf
+  - source activate vsa
   - pip install -e .
   - pip install pytest-cov
   - pip install coveralls
