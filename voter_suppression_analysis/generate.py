@@ -144,6 +144,7 @@ def generate_map(df_in, map_title, map_type):
     encoding = encoding.add_selection(SELECT_OBJ_YR)
     encoding = encoding.properties(title=map_title, width=415, height=200)
     filtered = encoding.transform_filter(SELECT_OBJ_YR)
+    print(filtered, type(filtered))
     return filtered
 
 
@@ -236,6 +237,7 @@ def generate_chart(df_in, x, y, x_lbl, y_lbl, title, clr_setting, chart_type):
 
     # combine features and finish
     chart = alt.vconcat(scatter, bars, data=copy)
+    print(chart, type(chart))
     return chart
 
 
@@ -291,6 +293,7 @@ def generate_html(df_age, df_sex, output_file_path):
     # combine and write to file, finish
     dashboard = (chart_age | chart_sexrace) | (map_voted & map_regis)
     dashboard.save(output_file_path)
+    print(dashboard, type(dashboard))
     print('Dashboard generated, location: /%s.' % output_file_path)
 
 
