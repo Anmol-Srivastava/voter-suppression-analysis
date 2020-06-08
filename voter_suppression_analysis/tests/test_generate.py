@@ -13,8 +13,9 @@ from voter_suppression_analysis.processing import \
     homogenize_age_data, homogenize_sexrace_data
 
 
-# anticipated object type of individual viz pieces
-EXPECTED_VIZ_TYPE = alt.vegalite.v4.api.Chart
+# anticipated object types of individual viz pieces
+EXPECTED_MAP_TYPE = alt.vegalite.v4.api.Chart
+EXEPECTED_CHART_TYPE = alt.vegalite.v4.api.VConcatChart
 
 # useful file locations
 CWD = Path(__file__).parent
@@ -46,7 +47,7 @@ def test_generate_map():
     )
 
     # type check 
-    assert isinstance(map, EXPECTED_VIZ_TYPE)
+    assert isinstance(map, EXPECTED_MAP_TYPE)
 
 
 def test_generate_chart():
@@ -67,7 +68,7 @@ def test_generate_chart():
     )
 
     # type check
-    assert isinstance(chart, EXPECTED_VIZ_TYPE)
+    assert isinstance(chart, EXPECTED_CHART_TYPE)
 
 
 def test_generate_html():
