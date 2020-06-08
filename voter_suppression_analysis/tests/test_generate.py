@@ -15,6 +15,7 @@ EXPECTED_VIZ_TYPE = alt.vegalite.v4.api.VConcatChart
 # test dashboard location
 TEST_PATH = '../figures/test_dashboard.html'
 
+
 def test_generate_map():
     ''' 
     Test generate_map(). Note that attributes for all Altair objects were
@@ -22,7 +23,7 @@ def test_generate_map():
     '''
 
     # smoke test 
-    map = generate.generate_map(
+    map = generate_map(
         DF_AGE,
         map_type='Percent Voted',
         map_title='X'
@@ -38,7 +39,7 @@ def test_generate_chart():
     '''
 
     # smoke test
-    chart = generate.generate_chart(
+    chart = generate_chart(
         df_in=DF_SEX,
         x='Percent Registered:Q',
         y='Percent Voted:Q',

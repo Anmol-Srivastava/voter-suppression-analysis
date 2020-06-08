@@ -3,7 +3,7 @@
 import pandas as pd
 import altair as alt
 from vega_datasets import data
-from voter_suppression_analysis.data import processing
+import processing
 
 
 # data and visualization locations
