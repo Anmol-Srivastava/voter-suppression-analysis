@@ -193,10 +193,14 @@ def generate_chart(df_in, x, y, x_lbl, y_lbl, title, clr_setting, chart_type):
     scatter = alt.Chart().mark_point()
 
     # scatter portion args
-    x_var = alt.X(x, title=x_lbl, scale=alt.Scale(domain=[0.05, 0.96]), axis=alt.Axis(format='%'))
-    y_var = alt.Y(y, title=y_lbl, scale=alt.Scale(domain=[0.05, 0.93]), axis=alt.Axis(format='%'))
+    axis = alt.Axis(format='%')
+    scale = alt.Scale(domain=[0.05, 0.96])
+    gray_val = alt.value('lightgray')
+
+    x_var = alt.X(x, title=x_lbl, scale=scale, axis=axis)
+    y_var = alt.Y(y, title=y_lbl, scale=scale, axis=axis)
     size = alt.Size('Total:Q', title='Total Eligible Voters')
-    clr = alt.condition(highlight, clr_setting, alt.value('lightgray'), legend=None)
+    clr = alt.condition(highlight, clr_setting, gray_val, legend=None)
 
     tools = [
         alt.Tooltip('STATE:N', title='State'),
