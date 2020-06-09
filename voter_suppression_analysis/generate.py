@@ -142,7 +142,7 @@ def generate_map(df_in, map_title, map_type):
         alt.value('#dbe9f6')
     )
 
-    tool = ['STATE:N', 'PERCENT:Q']
+    tool = ['STATE:N', alt.Tooltip('Percent:Q', format='.0%')]
 
     # final customizations and finish
     encoding = transform.encode(tooltip=tool, color=clr)
@@ -193,16 +193,16 @@ def generate_chart(df_in, x, y, x_lbl, y_lbl, title, clr_setting, chart_type):
     scatter = alt.Chart().mark_point()
 
     # scatter portion args
-    x_var = alt.X(x, title=x_lbl, scale=alt.Scale(domain=[0.05, 0.96]))
-    y_var = alt.Y(y, title=y_lbl, scale=alt.Scale(domain=[0.05, 0.93]))
+    x_var = alt.X(x, title=x_lbl, scale=alt.Scale(domain=[0.05, 0.96]), axis=alt.Axis(format='%'))
+    y_var = alt.Y(y, title=y_lbl, scale=alt.Scale(domain=[0.05, 0.93]), axis=alt.Axis(format='%'))
     size = alt.Size('Total:Q', title='Total Eligible Voters')
-    clr = alt.condition(highlight, clr_setting, alt.value('lightgray'))
+    clr = alt.condition(highlight, clr_setting, alt.value('lightgray'), legend=None)
 
     tools = [
         alt.Tooltip('STATE:N', title='State'),
         alt.Tooltip('Total:Q', title='Total Eligible Voters'),
-        alt.Tooltip('Total Registered:Q', title='% Registered Voters'),
-        alt.Tooltip('Total Voted:Q', title='% Voted')
+        alt.Tooltip('Total Registered:Q', title='# Registered Voters'),
+        alt.Tooltip('Total Voted:Q', title='# Voted')
     ]
 
     # scatter portion interactivity and labels
@@ -220,7 +220,7 @@ def generate_chart(df_in, x, y, x_lbl, y_lbl, title, clr_setting, chart_type):
     scatter = scatter.transform_filter(dropdown_box)
     scatter = scatter.add_selection(highlight)
     scatter = scatter.transform_filter(click)
-    scatter = scatter.properties(title=title, width=400, height=200)
+    scatter = scatter.properties(title=title, width=400, height=275)
 
     # bar portion
     bars = alt.Chart().mark_bar()
@@ -228,7 +228,7 @@ def generate_chart(df_in, x, y, x_lbl, y_lbl, title, clr_setting, chart_type):
     # bar portion args
     x_var = alt.X('count()', title='# States with Restrictive Laws')
     y_var = alt.Y(clr_setting, title='Restrictive Laws')
-    clr = alt.condition(click, color, alt.value('lightgray'))
+    clr = alt.condition(click, color, alt.value('lightgray'), legend=None)
 
     # bar portion interactivity and labels
     bars = alt.Chart().mark_bar()
