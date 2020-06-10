@@ -17,16 +17,16 @@ CWD = Path(__file__).parent
 data_folder = os.path.join('..', 'data')
 
 #EXAMPLE_PATH_AGE = CWD / '../data/samples/age_01.csv'
-EXAMPLE_PATH_AGE = os.path.join(data_folder, 'samples', 'age_01.csv')
+EXAMPLE_PATH_AGE = os.path.join(CWD, data_folder, 'samples', 'age_01.csv')
 #EXAMPLE_PATH_SEX = CWD / '../data/samples/sex_01.csv'
-EXAMPLE_PATH_SEX = os.path.join(data_folder, 'samples', 'sex_01.csv')
+EXAMPLE_PATH_SEX = os.path.join(CWD, data_folder, 'samples', 'sex_01.csv')
 #EXAMPLE_PATH_LAW = CWD / '../data/samples/law_01.csv'
-EXAMPLE_PATH_LAW = os.path.join(data_folder, 'samples', 'law_01.csv')
+EXAMPLE_PATH_LAW = os.path.join(CWD, data_folder, 'samples', 'law_01.csv')
 
 #EXAMPLE_DIR_AGE = str(CWD / '../*data*/*samples*/*example_age_folder*/*')
-EXAMPLE_DIR_AGE = os.path.join(data_folder, 'samples', 'example_age_folder', '*.csv')
+EXAMPLE_DIR_AGE = os.path.join(CWD, data_folder, 'samples', 'example_age_folder', '*.csv')
 #EXAMPLE_DIR_SEX = str(CWD / '../*data*/*samples*/*example_sex_folder*/*')
-EXAMPLE_DIR_SEX = os.path.join(data_folder, 'samples', 'example_sex_folder', '*.csv')
+EXAMPLE_DIR_SEX = os.path.join(CWD, data_folder, 'samples', 'example_sex_folder', '*.csv')
 
 GARBAGE_PATH = str(random.randint(0, 9))
 
