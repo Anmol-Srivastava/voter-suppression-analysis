@@ -19,13 +19,13 @@ CWD = Path(__file__).parent
 data_path = os.path.join('..', 'data')
 
 #OUTPUT_FILE_PATH = str(CWD / '../figures/test_dashboard.html')
-OUTPUT_FILE_PATH = os.path.join(data_path, 'figures', 'test_dashboard.html')
+OUTPUT_FILE_PATH = os.path.join(CWD,data_path, 'figures', 'test_dashboard.html')
 #EXAMPLE_DIR_AGE = str(CWD / '../*data*/*samples*/*example_age_folder*/*')
-EXAMPLE_DIR_AGE = os.path.join(data_path, 'samples', 'example_age_folder', '*.csv')
+EXAMPLE_DIR_AGE = os.path.join(CWD, data_path, 'samples', 'example_age_folder', '*.csv')
 #EXAMPLE_DIR_SEX = str(CWD / '../*data*/*samples*/*example_sex_folder*/*')
-EXAMPLE_DIR_SEX = os.path.join(data_path, 'samples', 'example_sex_folder', '*.csv')
+EXAMPLE_DIR_SEX = os.path.join(CWD, data_path, 'samples', 'example_sex_folder', '*.csv')
 #EXAMPLE_FILE_LAW = str(CWD / '../data/samples/law_01.csv')
-EXAMPLE_FILE_LAW = os.path.join(data_path, 'samples', 'law_01.csv')
+EXAMPLE_FILE_LAW = os.path.join(CWD, data_path, 'samples', 'law_01.csv')
 
 # anticipated object types of individual viz pieces
 EXPECTED_MAP_TYPE = alt.vegalite.v4.api.Chart
