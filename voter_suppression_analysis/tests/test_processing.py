@@ -6,7 +6,7 @@ import sys
 from pathlib import Path
 
 #sys.path.insert(0, os.path.abspath('..'))
-from processing import \
+from voter_suppression_analysis.processing import \
     get_age_df, get_sexrace_df, \
     combine_age_data, combine_sexrace_data, \
     homogenize_age_data, homogenize_sexrace_data
