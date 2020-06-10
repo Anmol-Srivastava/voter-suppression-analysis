@@ -12,10 +12,15 @@ from voter_suppression_analysis import processing
 
 
 # data and visualization locations
-DATA_PATH_SEX = 'data/clean/*_sexrace.csv'
-DATA_PATH_AGE = 'data/clean/*_age.csv'
-DATA_PATH_LAW = 'data/clean/suppression.csv'
-OUTPUT_FILE_PATH = 'figures/dashboard.html'
+data_path = 'data'
+#DATA_PATH_SEX = 'data/clean/*_sexrace.csv'
+DATA_PATH_SEX = os.path.join(data_path, 'clean', '*_sexrace.csv')
+#DATA_PATH_AGE = 'data/clean/*_age.csv'
+DATA_PATH_AGE = os.path.join(data_path, 'clean', '*_age.csv')
+#DATA_PATH_LAW = 'data/clean/suppression.csv'
+DATA_PATH_LAW = os.path.join(data_path, 'clean', 'suppression.csv')
+#OUTPUT_FILE_PATH = 'figures/dashboard.html'
+OUTPUT_FILE_PATH = os.path.join('figures', 'dashboard.html')
 
 # fixed lists of interactive feature labels
 CATEGORIES_AGE = [
